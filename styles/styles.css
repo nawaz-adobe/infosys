@@ -20,8 +20,8 @@
   --text-color: black;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
-  --heading-font-family: var(--body-font-family);
+  --body-font-family: rmyriad-pro, arial;
+  --heading-font-family: tungstenw05-medium, oswald, sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
@@ -98,6 +98,7 @@ p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
 
 code, pre {
   font-family: var(--fixed-font-family);
