@@ -47,11 +47,77 @@
 @font-face {
   font-family: icomoon;
   src: url('../fonts/icomoon.eot?uc1nim');
-  src: url('../fonts/icomoon-embedded.eot?uc1nim#iefix') format("embedded-opentype"),
-       url('../fonts/icomoon.ttf?uc1nim') format("truetype"),
-       url('../fonts/icomoon.woff?uc1nim') format("woff"),
-       url('../fonts/icomoon.svg?uc1nim#icomoon') format("svg");
+  src: url('../fonts/icomoon-embedded.eot') format("embedded-opentype"),
+       url('../fonts/icomoon.ttf') format("truetype"),
+       url('../fonts/icomoon.woff') format("woff"),
+       url('../fonts/icomoon.svg') format("svg");
   font-weight: 400;
   font-style: normal;
   font-display: block;
 }
+
+  @font-face {
+  font-family:"myriad-pro";
+  src:url("../fonts/myriad-pro-900.woff2") format("woff2"),
+      url("../fonts/myriad-pro-900.woff") format("woff"),
+      url("../fonts/myriad-pro-900.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:900;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:"myriad-pro";
+  src:url("../fonts/myriad-pro-700.woff2") format("woff2"),
+  url("../fonts/myriad-pro-700.woff") format("woff"),
+  url("../fonts/myriad-pro-700.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:700;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:"myriad-pro";
+  src:url("../fonts/myriad-pro-400-i.woff2") format("woff2"),
+      url("../fonts/myriad-pro-400-i.woff") format("woff"),
+      url("../fonts/myriad-pro-400-i.otf") format("opentype");
+  font-display:auto;
+  font-style:italic;
+  font-weight:400;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:"myriad-pro";
+  src:url("../fonts/myriad-pro-300.woff2") format("woff2"),
+      url("../fonts/myriad-pro-300.woff") format("woff"),
+      url("../fonts/myriad-pro-300.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:300;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:"myriad-pro";
+  src:url("../fonts/myriad-pro-400.woff2") format("woff2"),
+      url("../fonts/myriad-pro-400.woff") format("woff"),
+      url("../fonts/myriad-pro-400.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:400;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:"myriad-pro";
+  src:url("../fonts/myriad-pro-600.woff2") format("woff2"),
+      url("../fonts/myriad-pro-600.woff") format("woff"),
+      url("../fonts/myriad-pro-600.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:600;
+  font-stretch:normal;
+  }
