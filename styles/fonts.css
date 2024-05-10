@@ -15,3 +15,108 @@
   src: url('../fonts/roboto-regular.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+@font-face {
+  font-family: 'tungstenw05-medium';
+  src: url('../fonts/tungstenw05-medium.woff2') format("woff2"),
+       url('../fonts/tungstenw05-medium.woff') format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tungsten A';
+  src: url('../fonts/tungstenw05-A-medium.woff2') format('woff2'),
+       url('../fonts/tungstenw05-A-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tungsten B';
+  src: url('../fonts/tungstenw05-B-medium.woff2') format('woff2'),
+       url('../fonts/tungstenw05-B-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: icomoon;
+  src: url('../fonts/icomoon.eot?uc1nim');
+  src: url('../fonts/icomoon-embedded.eot') format("embedded-opentype"),
+       url('../fonts/icomoon.ttf') format("truetype"),
+       url('../fonts/icomoon.woff') format("woff"),
+       url('../fonts/icomoon.svg') format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+  @font-face {
+  font-family:myriad-pro;
+  src:url("../fonts/myriad-pro-900.woff2") format("woff2"),
+      url("../fonts/myriad-pro-900.woff") format("woff"),
+      url("../fonts/myriad-pro-900.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:900;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:myriad-pro;
+  src:url("../fonts/myriad-pro-700.woff2") format("woff2"),
+  url("../fonts/myriad-pro-700.woff") format("woff"),
+  url("../fonts/myriad-pro-700.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:700;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:myriad-pro;
+  src:url("../fonts/myriad-pro-400-i.woff2") format("woff2"),
+      url("../fonts/myriad-pro-400-i.woff") format("woff"),
+      url("../fonts/myriad-pro-400-i.otf") format("opentype");
+  font-display:auto;
+  font-style:italic;
+  font-weight:400;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:myriad-pro;
+  src:url("../fonts/myriad-pro-300.woff2") format("woff2"),
+      url("../fonts/myriad-pro-300.woff") format("woff"),
+      url("../fonts/myriad-pro-300.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:300;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:myriad-pro;
+  src:url("../fonts/myriad-pro-400.woff2") format("woff2"),
+      url("../fonts/myriad-pro-400.woff") format("woff"),
+      url("../fonts/myriad-pro-400.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:400;
+  font-stretch:normal;
+  }
+  
+  @font-face {
+  font-family:myriad-pro;
+  src:url("../fonts/myriad-pro-600.woff2") format("woff2"),
+      url("../fonts/myriad-pro-600.woff") format("woff"),
+      url("../fonts/myriad-pro-600.otf") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:600;
+  font-stretch:normal;
+  }
