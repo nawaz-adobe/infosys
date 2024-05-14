@@ -59,6 +59,14 @@
   }
 }
 
+*, *::before, *::after { box-sizing: inherit; }
+
+html {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
