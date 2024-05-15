@@ -30,12 +30,13 @@
   --body-font-size-xs: 16px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --base-font-size: 8px;
+  --heading-font-size-xxl: calc(4.6 * var(--base-font-size)); /* 36.8px */
+  --heading-font-size-xl: calc(3.6 * var(--base-font-size)); /* 28.8px */
+  --heading-font-size-l: calc(3 * var(--base-font-size)); /* 24px */
+  --heading-font-size-m: calc(2.4 * var(--base-font-size)); /* 19.2px */
+  --heading-font-size-s: calc(1.8 * var(--base-font-size)); /* 14.4px */
+  --heading-font-size-xs: calc(1.2 * var(--base-font-size)); /* 9.6px */
 
   /* nav height */
   --nav-height: 64px;
@@ -48,14 +49,41 @@
   src: local('Arial');
 }
 
-@media (width >= 900px) {
+@media (width >= 376px) {
   :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;
+    --heading-font-size-xxl: calc(5.6 * var(--base-font-size));
+    --heading-font-size-xl: calc(4.6 * var(--base-font-size));
+  }
+}
+
+@media (width >= 768px) {
+  :root {
+    --heading-font-size-xxl: calc(8 * var(--base-font-size));
+    --heading-font-size-xl: calc(7 * var(--base-font-size));
+  }
+}
+
+@media (width >= 992px) {
+  :root {
+    --base-font-size: 9px;
+    --heading-font-size-xxl: calc(8 * var(--base-font-size));
+    --heading-font-size-xl: calc(7 * var(--base-font-size));
+    --heading-font-size-l: calc(3 * var(--base-font-size));
+    --heading-font-size-m: calc(2.4 * var(--base-font-size));
+    --heading-font-size-s: calc(1.8 * var(--base-font-size));
+    --heading-font-size-xs: calc(1.35 * var(--base-font-size));
+  }
+}
+
+@media (width >= 1601px) {
+  :root {
+    --base-font-size: 10px;
+    --heading-font-size-xxl: calc(8 * var(--base-font-size));
+    --heading-font-size-xl: calc(7 * var(--base-font-size));
+    --heading-font-size-l: calc(3 * var(--base-font-size));
+    --heading-font-size-m: calc(2.4 * var(--base-font-size));
+    --heading-font-size-s: calc(1.8 * var(--base-font-size));
+    --heading-font-size-xs: calc(1.2 * var(--base-font-size));
   }
 }
 
