@@ -453,21 +453,30 @@ function decorateButtons(element) {
 }
 
 /**
- * Add <img> for icon, prefixed with codeBasePath and optional prefix.
+ * Check if the icon is a font icon or an image icon.
+ * Add <img> for image icon, prefixed with codeBasePath and optional prefix.
  * @param {Element} [span] span element with icon classes
  * @param {string} [prefix] prefix to be added to icon src
  * @param {string} [alt] alt text to be added to icon
  */
 function decorateIcon(span, prefix = '', alt = '') {
-  const iconName = Array.from(span.classList)
-    .find((c) => c.startsWith('icon-'))
-    .substring(5);
-  const img = document.createElement('img');
-  img.dataset.iconName = iconName;
-  img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
-  img.alt = alt;
-  img.loading = 'lazy';
-  span.append(img);
+  const iconName = Array.from(span.classList).find((className) => className.startsWith('icon-'));
+
+  if (!iconName) return;
+  const iconType = iconName.includes('--icomoon--') ? 'font' : 'image';
+
+  if (iconType === 'font') {
+    const fontIconName = iconName.substring(16);
+    span.classList.replace(iconName, `icon-${fontIconName}`);
+  } else {
+    const fullIconName = iconName.substring(5);
+    const img = document.createElement('img');
+    img.dataset.iconName = fullIconName;
+    img.src = `${window.hlx.codeBasePath}${prefix}/icons/${fullIconName}.svg`;
+    img.alt = alt;
+    img.loading = 'lazy';
+    span.append(img);
+  }
 }
 
 /**
