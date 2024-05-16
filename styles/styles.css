@@ -13,11 +13,20 @@
 :root {
   /* colors */
   --link-color: #035fe6;
+  --link-hover-bg-color: #63b0ff;
   --link-hover-color: #136ff6;
   --background-color: white;
   --light-color: #eee;
   --dark-color: #ccc;
   --text-color: black;
+  --footer-grey-text-color:#3f3f3f;
+  --scrollbar-thumb-color:#ffffff4d;
+  --scrollbar-shadow-color:#0000004D;
+  --scrollbar-thumb-shadow-color:#0000007F;
+  --footer-links-bg-color: #f8f8f8;
+  --footer-links-link-color: #3f3f3f;
+  --country-dropdown-grey-color: #7e7e7e;
+  
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -25,10 +34,21 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
+  --body-font-size-l: 24px;
   --body-font-size-m: 22px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
+  --body-font-size-xss: 14px;
 
+ /* Font Weight */
+ --font-weight-small: 300;
+ --font-weight-regular: 400;
+ --font-weight-medium: 500;
+ --font-weight-semibold: 600;
+ --font-weight-bold: 700;
+ --font-weight-bolder: 800;
+ --font-weight-boldest: 900;
+ 
   /* heading sizes */
   --base-font-size: 8px;
   --heading-font-size-xxl: calc(4.6 * var(--base-font-size)); /* 36.8px */
@@ -99,7 +119,7 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--body-font-family);
-  line-height: 1.6;
+  line-height: 1.45;
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
@@ -130,6 +150,7 @@ h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
 h6 { font-size: var(--heading-font-size-xs) }
 
+
 p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -155,6 +176,11 @@ main pre {
   border-radius: .25em;
   overflow-x: auto;
   white-space: pre;
+}
+
+/* section - full-width */
+main .section.full-width > .section-container{
+  max-width: 100%;
 }
 
 /* links */
@@ -235,7 +261,7 @@ main .section {
 
 @media (width >= 900px) {
   .section > div {
-    max-width: 1200px;
+    max-width: 1210px;
     margin: auto;
   }
 }
