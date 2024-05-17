@@ -19,6 +19,9 @@
   --light-color: #eee;
   --dark-color: #ccc;
   --text-color: black;
+  --black-olive: #3f3f3f;
+  --bright-blue: #007cc3;
+  --dark-denim: #00578A;
   --footer-grey-text-color:#3f3f3f;
   --scrollbar-thumb-color:#ffffff4d;
   --scrollbar-shadow-color:#0000004D;
@@ -26,7 +29,9 @@
   --footer-links-bg-color: #f8f8f8;
   --footer-links-link-color: #3f3f3f;
   --country-dropdown-grey-color: #7e7e7e;
-  
+  --body-font-color: var(--black-olive);
+  --button-bg-color: #0271b1;
+  --button-font-color: white;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -38,7 +43,7 @@
   --body-font-size-m: 22px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
-  --body-font-size-xss: 14px;
+  --body-font-size-xxs: 14px;
 
  /* Font Weight */
  --font-weight-small: 300;
@@ -48,7 +53,7 @@
  --font-weight-bold: 700;
  --font-weight-bolder: 800;
  --font-weight-boldest: 900;
- 
+
   /* heading sizes */
   --base-font-size: 8px;
   --heading-font-size-xxl: calc(4.6 * var(--base-font-size)); /* 36.8px */
@@ -253,13 +258,14 @@ main .section {
   padding: 64px 16px;
 }
 
-@media (width >= 600px) {
+@media (width <= 990px) {
   main .section {
-    padding: 64px 32px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
-@media (width >= 900px) {
+@media (width > 900px) {
   .section > div {
     max-width: 1210px;
     margin: auto;

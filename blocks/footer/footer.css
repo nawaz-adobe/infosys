@@ -9,7 +9,7 @@
 .section.footer-copyright {
   background-color: var(--background-color);
   padding: 1.5rem 0;
-  font-size: var(--body-font-size-xss);
+  font-size: var(--body-font-size-xxs);
 }
 
 .footer .section.footer-copyright .default-content-wrapper {
@@ -31,7 +31,7 @@
 }
 
 .footer .footer-links .row .links-column:last-child .links-title{
-  margin-top:0; 
+  margin-top:0;
 }
 
 .footer .footer-links .links-column>a {
@@ -137,7 +137,7 @@
   position: absolute;
   max-height: 20rem;
   overflow-y: auto;
-  display:none; 
+  display:none;
   top:-19rem;
   z-index: 1  ;
   background-color: var(--background-color);

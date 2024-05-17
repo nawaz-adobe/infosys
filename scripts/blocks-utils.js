@@ -1,3 +1,27 @@
+function createAemElement(tagName, attributes, properties, ...children) {
+  const el = document.createElement(tagName);
+  if (attributes) {
+    Object.keys(attributes).forEach((name) => {
+      el.setAttribute(name, attributes[name]);
+    });
+  }
+  if (properties) {
+    Object.keys(properties).forEach((name) => {
+      el[name] = properties[name];
+    });
+  }
+  children.forEach((child) => {
+    if (typeof child === 'string') {
+      el.appendChild(document.createTextNode(child));
+    } else if (Array.isArray(child)) {
+      child.forEach((c) => el.appendChild(c));
+    } else if (child) {
+      el.appendChild(child);
+    }
+  });
+  return el;
+}
+
 function createCustomElement(tagname, className) {
   const element = document.createElement(tagname);
   if (className) {
@@ -23,6 +47,7 @@ async function fetchData(url) {
 }
 
 export {
+  createAemElement,
   createCustomElement,
   fetchData,
 };
