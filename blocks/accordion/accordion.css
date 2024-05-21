@@ -1,0 +1,234 @@
+.accordion {
+  background: black;
+
+  --accordion-pseudo-title-bg-image: ''; /* updated via js in desktop mode */
+}
+
+.accordion a {
+  all: unset;
+}
+
+.accordion .item-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accordion-pseudo-title-bg-image) no-repeat center center;
+  background-size: cover;
+  transform: rotate(0deg);
+  z-index: -1;
+}
+
+@media (width > 990px) {
+  .accordion .item-title::before {
+    transform: rotate(180deg);
+  }
+}
+
+.accordion .item-title {
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(
+                rgb(255 255 255 / 0%),
+                rgb(0 0 0 / 80%));
+  color: white;
+  filter: grayscale(100%);
+  z-index: 1;
+}
+
+
+.accordion .item-title h4 {
+  position: relative;
+  white-space: nowrap;
+  font-family: var(--body-font-family);
+  font-weight: 900;
+  color: white;
+  padding: 0 2.8rem 0.8rem;
+  z-index: 1;
+}
+
+@media (width > 767px) {
+  .accordion {
+    display: flex;
+    flex-direction: row;
+    min-height: 60rem;
+    max-height: 60rem;
+  }
+
+  .accordion .item-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .accordion .item-title h4 {
+    padding: 0;
+  }
+}
+
+.accordion .item-title.open {
+  display: none;
+}
+
+.accordion .item-title.open::after {
+    transform: rotate(-135deg) translateX(50%);
+}
+
+.accordion .item-content {
+  display: none;
+  position: relative;
+  padding: 3.9rem 4.4rem;
+  background: none no-repeat center;
+  background-size: cover;
+  width: 100%;
+}
+
+.accordion .overlay {
+  position: relative;
+}
+
+.accordion .overlay::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.accordion .item-content.overlay::after {
+  background: linear-gradient(
+                rgb(255 255 255 / 0%),
+                rgb(0 0 0 / 80%));
+  height: 40rem;
+}
+
+.accordion .item-title.overlay::after {
+  background: linear-gradient(
+                to left,
+                rgb(255 255 255 / 0%),
+                rgb(0 0 0 / 98%));
+  height: 100%;
+}
+
+@media (width > 767px) {
+  .accordion .item-title.overlay::after {
+    display: none;
+  }
+}
+
+.accordion .item-title.open + .item-content {
+  display: block;
+  filter: grayscale(0);
+}
+
+.accordion .item-title.open + .item-content.animate {
+  animation: slide-up 0.5s ease;
+}
+
+.accordion .item-title:first-of-type.open + .item-content.animate {
+  animation: slide-down 0.5s ease;
+}
+
+@media (width > 767px) {
+  .accordion .item-title.open + .item-content.animate {
+    animation: slide-left 0.5s ease;
+  }
+
+  .accordion .item-title:first-of-type.open + .item-content.animate {
+    animation: slide-right 0.5s ease;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.accordion .item-content-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%
+}
+
+.accordion .item-content-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.accordion .item-content-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  column-gap: 1.2rem;
+  color: white;
+  margin-top: 35rem;
+  font-family: var(--body-font-family);
+  z-index: 1;
+  position: relative;
+}
+
+.accordion .item-content-main h3 {
+  font-family: inherit;
+  font-size: var(--heading-font-size-l);
+  font-weight: 900;
+  margin: 0;
+}
+
+.accordion .item-content-main p {
+  font-size: var(--body-font-size-m);
+  font-weight: 300;
+  max-width: 33rem;
+  margin-top: 1rem;
+}
+
+.accordion .icon-long-right-arrow {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.accordion .icon-long-right-arrow::before {
+  content: "";
+  color: white;
+  font-size: 2rem;
+}
