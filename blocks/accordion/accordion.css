@@ -1,7 +1,7 @@
 .accordion {
   background: black;
 
-  --accordion-pseudo-title-bg-image: ''; /* updated via js in desktop mode */
+  --accordion-pseudo-title-bg-image: ''; /* updated via js */
 }
 
 .accordion a {
