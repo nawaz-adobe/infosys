@@ -50,9 +50,9 @@ const setCardsListVisibleItems = (block) => {
 };
 
 function setBannerImage(banner, block) {
-  const section = block.closest('.section');
+  const blockParentElement = block.parentElement;
   const bannerImg = banner.querySelector('.banner-img img').src;
-  Object.assign(section.style, {
+  Object.assign(blockParentElement.style, {
     backgroundImage: `url(${bannerImg})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
