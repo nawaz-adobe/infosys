@@ -87,6 +87,20 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * This function moves the Social Share options to the tools section in the navigation bar.
+ * @param {Element} fragment - The fragment of the document where the navigation bar is located.
+ * @param {Element} navTools - The tools section in the navigation bar.
+ */
+function moveShareOptionsToTools(fragment, navTools) {
+  const socialLink = navTools.querySelector('span.icon-share');
+  if (socialLink) {
+    const listItemElement = socialLink.closest('li');
+    const socialWrapper = fragment.querySelector('.social-wrapper');
+    listItemElement.appendChild(socialWrapper);
+  }
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -100,47 +114,57 @@ export default async function decorate(block) {
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+
+  const navContainer = document.createElement('div');
+  navContainer.classList.add('nav-container');
+  nav.appendChild(navContainer);
 
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
-    const section = nav.children[i];
+    const section = fragment.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  const navBrand = nav.querySelector('.nav-brand');
+  const navBrand = fragment.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
     brandLink.closest('.button-container').className = '';
   }
+  navContainer.appendChild(navBrand);
 
-  const navSections = nav.querySelector('.nav-sections');
+  const navSections = fragment.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
+      navSection.addEventListener('mouseover', (e) => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
+          if (expanded && e.target.closest('li.nav-drop')) {
+            return;
+          }
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
     });
   }
+  navContainer.appendChild(navSections);
+
+  const navTools = fragment.querySelector('.nav-tools');
+  moveShareOptionsToTools(fragment, navTools);
+  nav.appendChild(navTools);
 
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
   hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
+      <span class="open icon icon-bx-menu-alt-right"></span>
+      <span class="close icon icon-bx-x"></span>
     </button>`;
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';

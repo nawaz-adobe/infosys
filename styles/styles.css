@@ -33,6 +33,10 @@
   --body-font-color: var(--black-olive);
   --button-bg-color: #0271b1;
   --button-font-color: white;
+  --silver: #a9aeb1;
+  --charleston-green: #282828;
+  --gray: #808080;
+  --dark-gunmetal: #212529;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -66,7 +70,7 @@
   --heading-font-size-xs: calc(1.2 * var(--base-font-size)); /* 9.6px */
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 84px;
 }
 
 @font-face {

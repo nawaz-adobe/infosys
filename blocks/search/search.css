@@ -1,0 +1,38 @@
+main .modal dialog[data-link="/modals/search"] {
+    height: 32rem;
+}
+
+main .modal dialog[data-link="/modals/search"] .search.block span.icon-search::before {
+     font-size:5rem;
+}
+
+main .modal dialog[data-link="/modals/search"] .search.block span.icon-popup-cross::before {
+    font-size:3rem;
+}
+
+main .modal dialog[data-link="/modals/search"] .search.block {
+    padding-top: 7.4rem;
+}
+
+main .modal dialog[data-link="/modals/search"] .search.block .search-input {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--silver);
+}
+
+main .modal dialog[data-link="/modals/search"] .search.block input.form-control.search {
+    font-size: 5.4rem;
+    font-weight: 300;
+    border: none;
+    padding-left: 0;
+    display: block;
+    width: 100%;
+    font-family: var(--body-font-family);
+}
+
+
+main .modal dialog[data-link="/modals/search"] .search.block input.form-control {
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

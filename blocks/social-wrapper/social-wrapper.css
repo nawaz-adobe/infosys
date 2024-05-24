@@ -1,0 +1,40 @@
+.block.social-wrapper {
+    display: none;
+    position: absolute;
+    background: white;
+    right: 0;
+    transform: translate(12px, 0);
+}
+
+.block.social-wrapper .social span.icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.5rem;
+    font-size: 2rem;
+    color: var(--charleston-green);
+}
+
+header nav .block.social-wrapper .social:hover span.icon {
+    color: var(--bright-blue);
+    border: 2px solid var(--bright-blue);
+}
+
+header nav .nav-tools ul li:has(.social) {
+    position: relative;
+}
+
+header nav .nav-tools ul li:hover div {
+    display: flex;
+}
+
+@media (width >= 1601px) {
+    .block.social-wrapper .social span.icon {
+        width: 4rem;
+        height: 4rem;
+    }
+}

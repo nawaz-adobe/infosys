@@ -13,8 +13,44 @@
 [class*=" icon-"],
 [class^="icon-"] {
     font-family: icomoon, var(--body-font-family);
+    font-size: var(--heading-font-size-l);
+    font-weight: 400;
+    width: auto;
+    height: auto;
 }
 
-.icon.icon-search::before {
+.icon-search::before {
     content: "";
+}
+
+.icon-down-arrow::before {
+    content: "";
+}
+
+.icon-facebook::before {
+    content: "";
+}
+
+.icon-twitter::before {
+    content: "";
+}
+
+.icon-linked-in::before {
+    content: "";
+}
+
+.icon-chain::before {
+    content: "";
+}
+
+.icon-bx-menu-alt-right::before {
+    content: "";
+}
+
+.icon-bx-x::before {
+    content: "";
+}
+
+.icon-popup-cross::before {
+    content: "";
 }
