@@ -37,6 +37,8 @@
   --charleston-green: #282828;
   --gray: #808080;
   --dark-gunmetal: #212529;
+  --navy-blue: #0c1220;
+  --light-sky-blue: #d5eff9;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -282,7 +284,7 @@ main .section:not(.no-padding) {
 }
 
 @media (width > 900px) {
-  .section > div, .section > div > div {
+  .section > div:not(>div.full-width), .section > div > div:not(.full-width) {
     max-width: 1210px;
     margin: auto;
   }
