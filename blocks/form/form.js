@@ -1,7 +1,7 @@
 import createField from './form-fields.js';
 import { sampleRUM } from '../../scripts/aem.js';
 
-async function createForm(formHref) {
+export async function createForm(formHref) {
   const { pathname } = new URL(formHref);
   const resp = await fetch(pathname);
   const json = await resp.json();
@@ -52,7 +52,7 @@ function handleSubmitError(form, error) {
   sampleRUM('form:error', { source: '.form', target: error.stack || error.message || 'unknown error' });
 }
 
-async function handleSubmit(form) {
+export async function handleSubmit(form) {
   if (form.getAttribute('data-submitting') === 'true') return;
 
   const submit = form.querySelector('button[type="submit"]');

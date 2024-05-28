@@ -30,6 +30,11 @@
   --footer-links-bg-color: #f8f8f8;
   --footer-links-link-color: #3f3f3f;
   --country-dropdown-grey-color: #7e7e7e;
+  --grey-color: #e1e1e180;
+  --subscription-bg-brown-color: #ab6604;
+  --subscription-bg-topaz-color: #2f1113;
+  --light-green-color: #1ed760;
+  --btn-border-color: #df9926;
   --body-font-color: var(--black-olive);
   --button-bg-color: #0271b1;
   --button-font-color: white;
@@ -292,7 +297,7 @@ main .section > div > div.full-width, main .section > div:has(div.full-width) {
 }
 
 @media (width > 900px) {
-  .section > div, .section > div > div {
+  .section > div:not(>div.full-width), .section > div > div:not(.full-width) {
     max-width: 1210px;
     margin: auto;
   }
