@@ -280,11 +280,19 @@ main .section.no-margin, main .section.no-margin h1 {
 
 /* sections */
 main .section:not(.no-padding) {
-  padding: 64px 20px;
+  padding-block: 64px;
+}
+
+main .section:not(.no-inline-padding) {
+  padding-inline: 20px;
+}
+
+main .section > div > div.full-width, main .section > div:has(div.full-width) {
+  max-width: 100%;
 }
 
 @media (width > 900px) {
-  .section > div:not(>div.full-width), .section > div > div:not(.full-width) {
+  .section > div, .section > div > div {
     max-width: 1210px;
     margin: auto;
   }
