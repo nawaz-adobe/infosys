@@ -94,6 +94,7 @@ div.section.hero-slider-container {
   box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
   width: 100%;
   bottom: -11%;
+  height: 164px;
 }
 
 .hero-slider .card-item {
@@ -108,6 +109,7 @@ div.section.hero-slider-container {
   font-weight: 300;
   line-height: 1.45;
   padding: 2.5rem 1rem 2.5rem 2rem;
+  height: 164px;
 }
 
 .hero-slider .card-item::after {
@@ -141,10 +143,12 @@ div.section.hero-slider-container {
 }
 
 .hero-slider .card-item.animate-l2r {
+  width: 100%;
   animation: slide-in-from-left 0.8s forwards;
 }
 
 .hero-slider .card-item.animate-r2l {
+  width: 100%;
   animation: slide-in-from-right 0.8s forwards;
 }
 
@@ -184,6 +188,11 @@ div.section.hero-slider-container {
   .hero-slider .cards-list {
     background-color: white;
     bottom: -8%;
+    height: unset;
+  }
+
+  .hero-slider .card-item {
+    height: unset;
   }
 
   .hero-slider .card-item::after {
@@ -195,7 +204,7 @@ div.section.hero-slider-container {
   .hero-slider .cards-list {
     background-color: white;
     margin-bottom: 10px;
-    bottom: -11%;
+    bottom: -15%;
   }
 
   .hero-slider .card-item::after {
@@ -211,6 +220,7 @@ div.section.hero-slider-container {
 .hero-slider .find-more .icon-chevron-right-circle-white {
   margin-right: 0.6rem;
   display: none;
+  font-size: unset;
 }
 
 .hero-slider .find-more .icon-chevron-right-circle-white::before {
@@ -225,6 +235,8 @@ div.section.hero-slider-container {
 
 .find-more .icon-long-right-arrow {
   display: inline-block;
+  width: 3rem;
+  height: 1.45rem;
 }
 
 @media (width > 767px) {
@@ -265,6 +277,23 @@ div.section.hero-slider-container {
   width: 40px;
   height: 40px;
   cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.hero-slider button.arrow.left::before {
+  font-family: icomoon;
+  content: "";
+  transform: rotateZ(180deg);
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.hero-slider button.arrow.right::before {
+  font-family: icomoon;
+  content: "";
+  display: inline-block;
+  margin-left: 1rem;
 }
 
 .hero-slider .tiles-bar {

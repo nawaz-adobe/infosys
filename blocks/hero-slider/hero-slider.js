@@ -1,17 +1,15 @@
 import { createAemElement } from '../../scripts/blocks-utils.js';
 
-const LEFT_ARROW = '../../icons/arrow-left-circle-thin.png';
-const RIGHT_ARROW = '../../icons/arrow-right-circle-thin.png';
 function getCurrentIndex(block) {
   const currentIndex = block.querySelector('.card-item.active');
   return [...block.querySelectorAll('.card-item')].indexOf(currentIndex);
 }
 
 function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
-  const cardItems = cardsList.querySelectorAll('.card-item');
-  const visibleItems = parseInt(cardsList.getAttribute('data-visible-items'), 10);
+  const cardItems = Array.from(cardsList.querySelectorAll('.card-item'));
+  const visibleItemsCount = parseInt(cardsList.getAttribute('data-visible-items'), 10);
   const newCardItem = cardItems[newIndex];
-  if (newCardItem.style.display === 'block' || visibleItems === cardItems.length) return;
+  if (prevIndex !== newIndex && newCardItem.style.display === 'block') return;
 
   cardItems.forEach((cardItem) => {
     cardItem.style.display = 'none';
@@ -19,13 +17,37 @@ function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
 
   let startIndex = newIndex;
   const animateClass = prevIndex < newIndex ? 'animate-r2l' : 'animate-l2r';
-  if (visibleItems === 2 && newIndex % 2 === 1) startIndex = newIndex - 1;
+  if (visibleItemsCount === 2 && newIndex % 2 === 1) startIndex = newIndex - 1;
   cardItems[startIndex].style.display = 'block';
   if (prevIndex !== newIndex) cardItems[startIndex].classList.add(animateClass);
-  for (let i = startIndex + 1; i < Math.min(startIndex + visibleItems, cardItems.length); i += 1) {
+  // eslint-disable-next-line max-len
+  for (let i = startIndex + 1; i < Math.min(startIndex + visibleItemsCount, cardItems.length); i += 1) {
     cardItems[i].style.display = 'block';
     if (prevIndex !== newIndex) cardItems[i].classList.add(animateClass);
   }
+}
+
+function setBannerImage(banner, block) {
+  const blockParentElement = block.parentElement;
+  const bannerImg = banner.querySelector('.banner-img img');
+  const imgSrc = bannerImg.currentSrc ? bannerImg.currentSrc : bannerImg.src;
+  Object.assign(blockParentElement.style, {
+    backgroundImage: `url(${imgSrc})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  });
+}
+
+function setActiveItemsByIndex(block, prevIndex, newIndex) {
+  const cardsList = block.querySelector('.cards-list');
+  const newBanner = block.querySelector(`.banner-${newIndex}`);
+  const newCardItem = block.querySelector(`.card-${newIndex}`);
+  const newTile = block.querySelector(`.tile-${newIndex}`);
+  newBanner.classList.add('active');
+  newCardItem.classList.add('active');
+  newTile.classList.add('active');
+  setBannerImage(newBanner, block);
+  updateVisibleCardItems(cardsList, prevIndex, newIndex);
 }
 
 const setCardsListVisibleItems = (block) => {
@@ -46,32 +68,10 @@ const setCardsListVisibleItems = (block) => {
   if (mobileView.matches) {
     cardsList.setAttribute('data-visible-items', 1);
   }
-  updateVisibleCardItems(cardsList, 0, 0);
+  setActiveItemsByIndex(block, 0, 0);
 };
 
-function setBannerImage(banner, block) {
-  const blockParentElement = block.parentElement;
-  const bannerImg = banner.querySelector('.banner-img img').src;
-  Object.assign(blockParentElement.style, {
-    backgroundImage: `url(${bannerImg})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  });
-}
-
-function setActiveItemsByIndex(block, prevIndex, newIndex) {
-  const cardsList = block.querySelector('.cards-list');
-  const newBanner = block.querySelector(`.banner-${newIndex}`);
-  const newCardItem = block.querySelector(`.card-${newIndex}`);
-  const newTile = block.querySelector(`.tile-${newIndex}`);
-  newBanner.classList.add('active');
-  newCardItem.classList.add('active');
-  newTile.classList.add('active');
-  setBannerImage(newBanner, block);
-  updateVisibleCardItems(cardsList, prevIndex, newIndex);
-}
-
-function stopProgressBar(block) {
+function stopAllActiveItems(block) {
   const currentProgressBar = block.querySelector('.progress-bar[state="started"]');
   if (currentProgressBar) {
     currentProgressBar.style.width = '0px';
@@ -108,7 +108,7 @@ function startProgressBar(block, currentIndex) {
 
     // current progress bar reached 100% width
     if (width >= cardItemWidth) {
-      stopProgressBar(block);
+      stopAllActiveItems(block);
       // If last progress bar, scroll the cards list back to the first card
       newIndex = (currentIndex + 1) % progressBars.length;
       setActiveItemsByIndex(block, currentIndex, newIndex);
@@ -125,7 +125,7 @@ function moveNextCard(block) {
   const currentCardItem = block.querySelector('.card-item.active');
   const currentIndex = [...cardItems].indexOf(currentCardItem);
   const nextIndex = (currentIndex + 1) % cardItems.length;
-  stopProgressBar(block);
+  stopAllActiveItems(block);
   setActiveItemsByIndex(block, currentIndex, nextIndex);
   startProgressBar(block, nextIndex);
 }
@@ -135,7 +135,7 @@ function movePrevCard(block) {
   const currentCardItem = block.querySelector('.card-item.active');
   const currentIndex = [...cardItems].indexOf(currentCardItem);
   const prevIndex = (currentIndex - 1 + cardItems.length) % cardItems.length;
-  stopProgressBar(block);
+  stopAllActiveItems(block);
   setActiveItemsByIndex(block, currentIndex, prevIndex);
   startProgressBar(block, prevIndex);
 }
@@ -172,15 +172,13 @@ function decorateCardFindMoreButton(card) {
 function decorateArrowControls(block) {
   const leftControl = createAemElement(
     'button',
-    { class: 'arrow' },
-    { innerHTML: `<img src="${LEFT_ARROW}" alt="Left Arrow">` },
+    { class: 'arrow left' },
   );
   leftControl.addEventListener('click', () => movePrevCard(block));
 
   const rightControl = createAemElement(
     'button',
-    { class: 'arrow' },
-    { innerHTML: `<img src="${RIGHT_ARROW}" alt="Right Arrow">` },
+    { class: 'arrow right' },
   );
   rightControl.addEventListener('click', () => moveNextCard(block));
   const arrowControls = createAemElement('div', { class: 'arrow-controls' }, null, leftControl, rightControl);
@@ -194,7 +192,7 @@ function decorateTilesControls(block) {
     const tile = createAemElement('li', { class: `tile tile-${i}` });
     tile.addEventListener('click', () => {
       const currentIndex = getCurrentIndex(block);
-      stopProgressBar(block);
+      stopAllActiveItems(block);
       tile.classList.add('active');
       setActiveItemsByIndex(block, currentIndex, i);
       startProgressBar(block, i);
@@ -223,7 +221,7 @@ function decorateHeroSlidingCards(block) {
     cardsList.appendChild(card);
     card.addEventListener('click', () => {
       const currentIndex = getCurrentIndex(block);
-      stopProgressBar(block);
+      stopAllActiveItems(block);
       setActiveItemsByIndex(block, currentIndex, index);
       startProgressBar(block, index);
     });
@@ -257,7 +255,7 @@ function onLoadSetItemsPosition(block) {
 
   window.addEventListener('resize', () => {
     const cardsList = block.querySelector('.cards-list');
-    stopProgressBar(block);
+    stopAllActiveItems(block);
     cardsList.setAttribute('progress-bar', 'none');
     setCardsListVisibleItems(block);
     setProgressBarPosition(block);
