@@ -1,7 +1,7 @@
 .cards-grid {
   position: relative;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   align-items: start;
 
   --card-background-color: var(--navy-blue);
@@ -26,7 +26,7 @@
 
 @media (width > 767px) {
   .cards-grid {
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: auto auto;
     gap: 1rem;
   }
 
@@ -53,7 +53,7 @@
 
 @media (width > 990px) {
   .cards-grid {
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: auto auto;
   }
 
   .cards-grid > .row {

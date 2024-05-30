@@ -279,16 +279,18 @@ main .section.black-background {
   background-color: black;
 }
 
-main .section.no-margin, main .section.no-margin h1 {
+main .section.no-margin,
+main .section.no-margin h1:first-of-type,
+main .section.no-margin h2:first-of-type {
   margin: 0;
 }
 
 /* sections */
-main .section:not(.no-padding) {
-  padding-block: 64px;
+main .section:not(.no-top-padding) {
+  padding-top: 64px;
 }
 
-main .section:not(.no-inline-padding) {
+main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
   padding-inline: 20px;
 }
 
@@ -296,9 +298,9 @@ main .section > div > div.full-width, main .section > div:has(div.full-width) {
   max-width: 100%;
 }
 
-@media (width > 900px) {
-  .section > div:not(>div.full-width), .section > div > div:not(.full-width) {
-    max-width: 1210px;
+@media (width > 1210px) {
+  .section > div, .section > div > div {
+    max-width: 1170px;
     margin: auto;
   }
 

@@ -27,7 +27,7 @@ div.section.hero-slider-container {
 
 @media (width > 990px) {
   div.section.hero-slider-container {
-    margin-bottom: 7.5rem;
+    margin-bottom: 10rem;
   }
 
   .hero-slider {

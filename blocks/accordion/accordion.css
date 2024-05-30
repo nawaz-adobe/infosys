@@ -1,6 +1,4 @@
 .accordion {
-  background: black;
-
   --accordion-pseudo-title-bg-image: ''; /* updated via js */
 }
 
