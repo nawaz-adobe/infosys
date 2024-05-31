@@ -61,8 +61,8 @@ const checkEmailDomain = (form) => {
   const domain = email.split('@')[1].split('.')[0];
   const invalidDomains = ['gmail', 'yahoo', 'outlook', 'rediffmail', 'hotmail', 'me'];
   if (invalidDomains.includes(domain)) {
-    form.querySelector('.errorStringDiv h2').style.opacity = '1';
-    form.querySelector('.errorStringDiv h2').textContent = 'Please enter Business Email';
+    form.querySelector('.error-msg h2').style.opacity = '1';
+    form.querySelector('.error-msg h2').textContent = 'Please enter Business Email';
     return false;
   }
   return true;
@@ -74,48 +74,42 @@ const checkEmailDomain = (form) => {
  * @returns {Promise<HTMLElement>} - The decorated popup div element.
  */
 const decoratePopupDiv = async (popupDiv) => {
-  popupDiv.className = 'popup';
   if (popupDiv.children.length > 0) {
     const popupChildren = Array.from(popupDiv.children[0].children);
-    const formCreationPromises = popupChildren
-      .filter((element) => element.tagName.toLowerCase() === 'a'
-        && element.href.endsWith('.json')
-        && element.href.includes('forms'))
-      .map(async (element) => {
-        const form = await createForm(element.href);
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const valid = form.checkValidity() && checkEmailDomain(form);
-          if (valid) {
-            handleSubmit(form);
-            handleSubmitExternal(form);
-          } else {
-            const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');
-            if (firstInvalidEl) {
-              firstInvalidEl.focus();
-              firstInvalidEl.scrollIntoView({ behavior: 'smooth' });
-            }
+    const element = popupChildren[0];
+    if (element.tagName.toLowerCase() === 'a'
+      && element.href.endsWith('.json')) {
+      const form = await createForm(element.href);
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const valid = form.checkValidity() && checkEmailDomain(form);
+        if (valid) {
+          handleSubmit(form);
+          handleSubmitExternal(form);
+        } else {
+          const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');
+          if (firstInvalidEl) {
+            firstInvalidEl.focus();
+            firstInvalidEl.scrollIntoView({ behavior: 'smooth' });
           }
-        });
-        element.replaceWith(form);
+        }
       });
-    await Promise.all(formCreationPromises);
+      element.replaceWith(form);
+    }
   }
-  return popupDiv;
 };
 
 export default async function decorate(block) {
   const containerDiv = createCustomElement('div', 'container-fluid');
-  const blockChildren = Array.from(block.children);
-
-  for (const columnElement of blockChildren) {
-    const titleLinkDiv = columnElement.children[0];
-    let popupDiv = columnElement.children[1];
+  [...block.children].forEach((row) => {
+    const titleLinkDiv = row.children[0];
+    const popupDiv = row.children[1];
 
     if (titleLinkDiv) {
       const colDiv = decorateColumnDiv(titleLinkDiv);
       if (popupDiv.children.length > 0) {
-        popupDiv = await decoratePopupDiv(popupDiv);
+        popupDiv.className = 'popup';
+        decoratePopupDiv(popupDiv);
         colDiv.insertBefore(popupDiv, colDiv.firstChild);
         colDiv.onclick = () => {
           showPopupDiv(colDiv);
@@ -123,7 +117,7 @@ export default async function decorate(block) {
       }
       containerDiv.appendChild(colDiv);
     }
-  }
+  });
 
   block.textContent = '';
   block.appendChild(containerDiv);

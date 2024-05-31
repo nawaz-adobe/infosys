@@ -7,22 +7,22 @@ div.section.hero-slider-container {
   position: relative;
   height: 50rem;
 
- --banner-title-font-color: white;
- --banner-title-font-family: var(--heading-font-family);
- --banner-title-font-size: var(--heading-font-size-xxl);
- --banner-content-top: 38%;
- --card-bg-color: white;
- --card-item-font-size: 1.6rem;
- --card-item-find-more-font-size: 1.8rem;
- --card-item-font-family: var(--body-font-family);
- --card-item-font-color: var(--body-font-color);
- --card-item-border-right: 1px solid rgba(169 174 177 / 60%);
- --find-more-link-font-color: var(--dark-denim);
- --icon-long-right-arrow-font-color: var(--bright-blue);
- --progress-bar-bg-color: var(--bright-blue);
- --tile-active-bg-color: var(--bright-blue);
- --tiles-bar-top: 118%;
- --arrow-control-top: 116%;
+  --banner-title-font-color: white;
+  --banner-title-font-family: var(--heading-font-family);
+  --banner-title-font-size: var(--heading-font-size-xxl);
+  --banner-content-top: 38%;
+  --card-bg-color: white;
+  --card-item-font-size: 1.6rem;
+  --card-item-find-more-font-size: 1.8rem;
+  --card-item-font-family: var(--body-font-family);
+  --card-item-font-color: var(--body-font-color);
+  --card-item-border-right: 1px solid rgba(169 174 177 / 60%);
+  --find-more-link-font-color: var(--dark-denim);
+  --icon-long-right-arrow-font-color: var(--bright-blue);
+  --progress-bar-bg-color: var(--bright-blue);
+  --tile-active-bg-color: var(--bright-blue);
+  --tiles-bar-top: 118%;
+  --arrow-control-top: 116%;
 }
 
 @media (width > 990px) {
@@ -38,7 +38,7 @@ div.section.hero-slider-container {
 }
 
 .hero-slider a:any-link {
- all: unset;
+  all: unset;
 }
 
 .hero-slider button {
@@ -282,7 +282,7 @@ div.section.hero-slider-container {
 }
 
 .hero-slider button.arrow.left::before {
-  font-family: icomoon;
+  font-family: icomoon, var(--body-font-family);
   content: "";
   transform: rotateZ(180deg);
   display: inline-block;
@@ -290,7 +290,7 @@ div.section.hero-slider-container {
 }
 
 .hero-slider button.arrow.right::before {
-  font-family: icomoon;
+  font-family: icomoon, var(--body-font-family);
   content: "";
   display: inline-block;
   margin-left: 1rem;

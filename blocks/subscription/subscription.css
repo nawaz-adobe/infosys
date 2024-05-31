@@ -8,6 +8,11 @@
   flex-wrap: wrap;
 }
 
+.subscription a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .block.subscription .box:hover .header-icons {
   transform: translateY(-1.5rem);
   transition: all 0.5s ease;
@@ -18,19 +23,13 @@
   height: 100%;
 }
 
-.block.subscription .popup ul li a:hover{
-  transform: translateX(1rem);
-  transition: all 0.3s ease;
+.block.subscription a {
+  height: 100%;
 }
 
-main .section.full-width .subscription-wrapper{
+main .section.full-width .subscription-wrapper {
   max-width: 100%;
 }
-
-.subscription a {
-  text-decoration: none;
-  cursor: pointer;
-}  
 
 .block.subscription .box {
   padding: 6rem 2rem;
@@ -64,66 +63,7 @@ main .section.full-width .subscription-wrapper{
   justify-content: center;
   text-align: left;
   background-color: var(--subscription-bg-topaz-color);
-  margin:0;
-}
-
-.block.subscription .popup ul li:first-child {
-  border-top: 0px solid var(--grey-color);
-}
-
-.block.subscription .box span.header-icons {
-  font-size: 3rem;
-  transform: translateY(0);
-  transition: all 0.5s ease;
-}
-
-.block.subscription .popup h3{
-  margin: 1rem 0; 
-  font-family: var(--body-font-family);
-  font-weight: var(--font-weight-regular);
-  font-size: var(--body-font-size-s);
-}
-
-.block.subscription .popup ul li span[class*='icon-'] {
-  display: flex;  
-  align-items: center;
-  color: var(--background-color);
-  font-size: var(--body-font-size-xs);
-}
-
-.block.subscription a {
-  height: 100%;
-}
-
-.input-txt input{
-  width: 100%;
-  font-size: var(--body-font-size-xs);
-  font-family: inherit;
-  line-height: inherit;
-  padding: 0.1rem 0.2rem;
-}
-
-.block.subscription .popup ul {
-  height: 100%;
-  padding: 1rem 1rem;
-  transform: translateY(0);
   margin: 0;
-  background-color: var(--subscription-bg-topaz-color);
-}
-
-.block.subscription .popup .errorStringDiv h2 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  opacity:  0;
-  font-size: var(--body-font-size-xxs);
-  font-family: var(--body-font-family);
-  font-weight: var( --font-weight-small);
-}
-
-.block.subscription .popup .thankyousub h4 {
-  font-size: 1.44rem;
-  font-weight: var(--font-weight-regular);
-  font-family: var(--body-font-family);
 }
 
 .block.subscription .popup ul li {
@@ -136,10 +76,6 @@ main .section.full-width .subscription-wrapper{
   gap: 0.5rem;
 }
 
-.block.subscription a {
-  height: 100%;
-}
-
 .block.subscription .popup ul li a {
   color: var(--background-color);
   font-family: var(--body-font-family);
@@ -149,18 +85,78 @@ main .section.full-width .subscription-wrapper{
   transition: all 0.5s ease;
 }
 
+.block.subscription .popup ul li a:hover {
+  transform: translateX(1rem);
+  transition: all 0.3s ease;
+}
+
+.block.subscription .popup ul li:first-child {
+  border-top: 0 solid var(--grey-color);
+}
+
+.block.subscription .box span.header-icons {
+  font-size: 3rem;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+}
+
+.block.subscription .popup h3 {
+  margin: 1rem 0;
+  font-family: var(--body-font-family);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--body-font-size-s);
+}
+
+.block.subscription .popup ul li span[class*='icon-'] {
+  display: flex;
+  align-items: center;
+  color: var(--background-color);
+  font-size: var(--body-font-size-xs);
+}
+
+.input-txt input {
+  width: 100%;
+  font-size: var(--body-font-size-xs);
+  font-family: inherit;
+  line-height: inherit;
+  padding: 0.1rem 0.2rem;
+}
+
+.block.subscription .popup ul {
+  height: 100%;
+  padding: 1rem;
+  transform: translateY(0);
+  margin: 0;
+  background-color: var(--subscription-bg-topaz-color);
+}
+
+.block.subscription .popup .error-msg h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  font-size: var(--body-font-size-xxs);
+  font-family: var(--body-font-family);
+  font-weight: var(--font-weight-small);
+}
+
+.block.subscription .popup .thankyousub h4 {
+  font-size: 1.44rem;
+  font-weight: var(--font-weight-regular);
+  font-family: var(--body-font-family);
+}
+
 .block.subscription .popup ul li a [class*='icon-'] {
   color: #fff;
   font-size: var(--body-font-size-xs);
 }
 
 .block.subscription .thankyousub {
-  padding:2.5rem;
+  padding: 2.5rem;
 }
 
-.block.subscription .submit-btn button{
+.block.subscription .submit-btn button {
   color: var(--background-color);
-  background: transparent ;
+  background: transparent;
   font-size: var(--body-font-size-xxs);
   font-weight: 400;
   border: 0.2rem solid var(--btn-border-color);
@@ -172,14 +168,14 @@ main .section.full-width .subscription-wrapper{
 }
 
 
-@media(width >= 481px) {
+@media(width >=481px) {
   .block.subscription .columns {
     flex: 0 0 50%;
-    max-width: 50%; 
+    max-width: 50%;
   }
 }
 
-@media(width >= 768px) {
+@media(width >=768px) {
   .block.subscription .columns {
     flex: 0 0 25%;
     max-width: 25%;
@@ -190,30 +186,32 @@ main .section.full-width .subscription-wrapper{
   }
 
   .block.subscription .popup ul {
-    padding: 0rem 2.5rem;
+    padding: 0 2.5rem;
   }
 }
 
-@media(width >= 993px) {
-  .block.subscription .popup h3{
+@media(width >=993px) {
+  .block.subscription .popup h3 {
     font-size: var(--body-font-size-s);
   }
 }
 
-@media(width >= 1025px) {
-  .block.subscription .popup h3{
+@media(width >=1025px) {
+  .block.subscription .popup h3 {
     font-size: 1.92rem;
   }
-  .block.subscription .box{
+
+  .block.subscription .box {
     padding: 6rem;
   }
 
 }
 
-@media(width >= 1601px) {
-  .block.subscription .popup h3{
+@media(width >=1601px) {
+  .block.subscription .popup h3 {
     font-size: var(--body-font-size-xl);
   }
+
   .block.subscription .popup .thankyousub h4 {
     font-size: var(--body-font-size-s);
   }
