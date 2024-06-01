@@ -1,15 +1,53 @@
-main .modal dialog[data-link="/modals/search"] {
-    height: 32rem;
+/* General Reset */
+ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
 }
 
+/* Modal Styles */
+main .modal dialog[data-link="/modals/search"] {
+    height: 32rem;
+    position: absolute;
+    top: var(--nav-height);
+    bottom: auto;
+    overflow: visible;
+    opacity: 0;
+    transform: translate(0, -25%);
+    transition: opacity 0.3s linear, transform 0.3s ease-out;
+}
+
+main .modal dialog[data-link="/modals/search"][open] {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+main .modal dialog[data-link="/modals/search"] h1,
+main .modal dialog[data-link="/modals/search"] h2,
+main .modal dialog[data-link="/modals/search"] h3,
+main .modal dialog[data-link="/modals/search"] h4,
+main .modal dialog[data-link="/modals/search"] h5,
+main .modal dialog[data-link="/modals/search"] h6 {
+    font-family: var(--body-font-family);
+}
+
+main .modal dialog[data-link="/modals/search"] p {
+    font-size: 1.8rem;
+    line-height: 1.45;
+    font-weight: 300;
+    margin: 0;
+}
+
+/* Icon Sizes */
 main .modal dialog[data-link="/modals/search"] .search.block span.icon-search::before {
-     font-size:5rem;
+    font-size: var(--heading-font-size-xl);
 }
 
 main .modal dialog[data-link="/modals/search"] .search.block span.icon-popup-cross::before {
-    font-size:3rem;
+    font-size: var(--heading-font-size-l);
 }
 
+/* Search Block Styles */
 main .modal dialog[data-link="/modals/search"] .search.block {
     padding-top: 7.4rem;
 }
@@ -20,19 +58,188 @@ main .modal dialog[data-link="/modals/search"] .search.block .search-input {
     border-bottom: 1px solid var(--silver);
 }
 
+main .modal dialog[data-link="/modals/search"] .search.block .search-input .icon-search {
+    margin-right: 1.5rem;
+}
+
 main .modal dialog[data-link="/modals/search"] .search.block input.form-control.search {
-    font-size: 5.4rem;
+    font-size: var(--heading-font-size-xl);
     font-weight: 300;
     border: none;
     padding-left: 0;
     display: block;
     width: 100%;
     font-family: var(--body-font-family);
+    color: var(--black-olive);
+    outline: none;
 }
 
+main .modal dialog[data-link="/modals/search"] .search.block input.form-control.search::placeholder {
+    color: var(--off-white);
+}
 
 main .modal dialog[data-link="/modals/search"] .search.block input.form-control {
     padding: 0.375rem 0.75rem;
     line-height: 1.5;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Search Popup Styles */
+main .modal dialog[data-link="/modals/search"] .search-wrapper .search form .search-popup {
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    transition: height 0.5s ease;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-wrapper .search form .search-popup.show-search {
+    z-index: 7;
+    height: 41rem;
+    background-color: white;
+    width: 100%;
+    padding: 3.6rem 3rem 3rem;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 24%);
+    overflow-y: auto;
+}
+
+/* Cross Icon Hover Effect */
+main .modal dialog[data-link="/modals/search"] .search-wrapper .icon-popup-cross:hover::before {
+    display: inline-block;
+    color: var(--orange);
+    transform: rotate(90deg);
+    transition: all 0.2s ease;
+}
+
+/* Search Results Styles */
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .search-list li {
+    margin-bottom: 1.6rem;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .search-list li a {
+    font-size: var(--heading-font-size-s);
+    font-weight: 600;
+    color: var(--grey-lighter);
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .search-list li a:hover {
+    color: var(--bright-blue);
+    text-decoration: none;
+}
+
+/* Suggestions Styles */
+
+main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .most-recommended-article {
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .most-recommended-article .article-image {
+    min-width: 17rem;
+    max-width: 17rem;
+    margin-right: 1.3rem;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .most-recommended-article .article-image a:hover img {
+    transform: scale(1.05);
+    transition: all 0.5s ease;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .most-recommended-article .article {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .most-recommended-article .article .article-heading {
+    color: var(--bright-blue);
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    margin: 1rem 0 1.2rem;
+    letter-spacing: 0.8px;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .most-recommended-article .article .article-text {
+    color: var(--black-olive);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search::before {
+    font-size: 2rem;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search::before,
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow::before {
+    color: var(--grey);
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow {
+    transform: rotate(-135deg);
+    font-size: 1.5rem;
+}
+
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results .suggestions-container {
+    background-color: var(--grey-light);
+}
+
+/* Media Query Styles */
+
+@media (width >= 768px) {
+    main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search,
+    main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow {
+        display: none;
+    }
+
+    main .modal dialog[data-link="/modals/search"] .search-popup .search-results .suggestions-container {
+        background-color: transparent;
+    }
+}
+
+@media (width >= 992px) {
+    main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search,
+    main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow {
+        display: none;
+    }
+
+    main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list {
+        padding-inline: 1rem;
+        border-right: 1px solid #a9aeb1;
+    }
+
+    main .modal dialog[data-link="/modals/search"] .search-popup .suggestions {
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list-container {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    main .modal dialog[data-link="/modals/search"] .search-popup .search-results .suggestions-container {
+        flex: 0 0 75%;
+        max-width: 75%;
+        background-color: transparent;
+    }
+
+    main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .row > div {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
 }

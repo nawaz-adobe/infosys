@@ -44,6 +44,10 @@
   --dark-gunmetal: #212529;
   --navy-blue: #0c1220;
   --light-sky-blue: #d5eff9;
+  --grey: #999;
+  --grey-light: #f5f6f7;
+  --orange: #f16c51;
+  --grey-lighter: #707070;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -78,6 +82,9 @@
 
   /* nav height */
   --nav-height: 84px;
+
+  /* content width */
+  --content-width: 1170px;
 }
 
 @font-face {
@@ -290,17 +297,17 @@ main .section:not(.no-top-padding) {
   padding-top: 64px;
 }
 
-main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
-  padding-inline: 20px;
-}
-
 main .section > div > div.full-width, main .section > div:has(div.full-width) {
   max-width: 100%;
 }
 
+main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
+  padding-inline: 20px;
+}
+
 @media (width > 1210px) {
   .section > div, .section > div > div {
-    max-width: 1170px;
+    max-width: var(--content-width);
     margin: auto;
   }
 

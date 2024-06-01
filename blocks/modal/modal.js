@@ -54,9 +54,26 @@ export async function createModal(contentNodes, id) {
 
   // close dialog on clicks outside the dialog. https://stackoverflow.com/a/70593278/79461
   dialog.addEventListener('click', (event) => {
+    if (dialog.dataset.skipCloseOnOutsideClick) {
+      return;
+    }
     const dialogDimensions = dialog.getBoundingClientRect();
-    if (event.clientX < dialogDimensions.left || event.clientX > dialogDimensions.right
-            || event.clientY < dialogDimensions.top || event.clientY > dialogDimensions.bottom) {
+    const extraBoundary = {
+      top: parseInt(dialog.dataset.extraBoundaryTop || 0, 10),
+      right: parseInt(dialog.dataset.extraBoundaryRight || 0, 10),
+      bottom: parseInt(dialog.dataset.extraBoundaryBottom || 0, 10),
+      left: parseInt(dialog.dataset.extraBoundaryLeft || 0, 10),
+    };
+
+    const adjustedDimensions = {
+      left: dialogDimensions.left - extraBoundary.left,
+      right: dialogDimensions.right + extraBoundary.right,
+      top: dialogDimensions.top - extraBoundary.top,
+      bottom: dialogDimensions.bottom + extraBoundary.bottom,
+    };
+
+    if (event.clientX < adjustedDimensions.left || event.clientX > adjustedDimensions.right
+        || event.clientY < adjustedDimensions.top || event.clientY > adjustedDimensions.bottom) {
       dialog.close();
     }
   });
@@ -68,7 +85,6 @@ export async function createModal(contentNodes, id) {
 
   dialog.addEventListener('close', () => {
     document.body.classList.remove('modal-open');
-    block.remove();
   });
 
   block.append(dialog);
