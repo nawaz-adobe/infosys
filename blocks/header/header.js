@@ -160,7 +160,7 @@ export default async function decorate(block) {
   hamburger.classList.add('nav-hamburger');
   hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
       <span class="open icon icon-bx-menu-alt-right"></span>
-      <span class="close icon icon-bx-x"></span>
+      <span class="x-circle"><span class="close icon icon-bx-x"></span></span> 
     </button>`;
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
@@ -171,3 +171,25 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 }
+
+// ToDo: Remove this code if resizing is not required as it impacts performance
+/* Handle a case when Hamburger menu is opened and screen size is increased */
+function debounce(func, wait) {
+  let timeout;
+  return function cleanup(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+function updateAriaExpandedForMobileNav() {
+  const mobileNav = document.querySelector('.header.block nav');
+  if (window.innerWidth >= 993) {
+    mobileNav.setAttribute('aria-expanded', 'false');
+  }
+}
+
+// Debounce the resize event listener
+const debouncedUpdateAriaExpanded = debounce(updateAriaExpandedForMobileNav, 200);
+
+window.addEventListener('resize', debouncedUpdateAriaExpanded);

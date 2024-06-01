@@ -6,6 +6,11 @@
     transform: translate(12px, 0);
 }
 
+header nav[aria-expanded="true"] .block.social-wrapper {
+    top: 0;
+    transform: translate(-100px, 0);
+}
+
 .block.social-wrapper .social span.icon {
     width: 3rem;
     height: 3rem;
