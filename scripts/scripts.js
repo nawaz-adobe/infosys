@@ -58,6 +58,27 @@ function autolinkModals(element) {
   });
 }
 
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+/** Builds a scroll to top button */
+function buildScrollToTopButton(main) {
+  if (document.querySelector('.scroll-to-top')) return;
+
+  const scrollToTopBtn = document.createElement('button');
+  scrollToTopBtn.classList.add('scroll-to-top');
+  scrollToTopBtn.onclick = scrollToTop;
+
+  const icon = document.createElement('span');
+  icon.classList.add('icon', 'icon-right-angle');
+  scrollToTopBtn.appendChild(icon);
+
+  main.appendChild(scrollToTopBtn);
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -65,6 +86,7 @@ function autolinkModals(element) {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    buildScrollToTopButton(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -132,6 +154,19 @@ async function loadLazy(doc) {
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
 }
+
+function handleScroll() {
+  const scrollToTopBtn = document.querySelector('.scroll-to-top');
+  if (!scrollToTopBtn) return;
+  if (window.scrollY > 400 && window.innerWidth >= 992) {
+    scrollToTopBtn.style.display = 'flex';
+  } else {
+    scrollToTopBtn.style.display = 'none';
+  }
+}
+
+window.addEventListener('scroll', handleScroll);
+handleScroll();
 
 /**
  * Loads everything that happens a lot later,

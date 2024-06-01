@@ -305,7 +305,54 @@ main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
   padding-inline: 20px;
 }
 
-@media (width > 1210px) {
+main .scroll-to-top {
+  display: none;
+}
+
+@media (width >= 992px) {
+  main .scroll-to-top {
+    position: fixed;
+    right: 5%;
+    bottom: 20rem;
+    z-index: 1;
+    transition: all 0.5s;
+    transform: rotate(180deg);
+    width: 6.2rem;
+    height: 6.2rem;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -8px 16px rgb(0 0 0 / 16%);
+    color: #000;
+  }
+
+  main .scroll-to-top .icon-right-angle {
+    transform: rotate(90deg);
+    font-size: 2.4rem;
+  }
+
+ main .scroll-to-top:hover {
+    background: var(--charleston-green);
+    transition: all 0.2s ease;
+  }
+
+  main .scroll-to-top:hover .icon-right-angle {
+    color: white;
+  }
+}
+
+@media (width > 1210px) {  
+  main .scroll-to-top {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  main .scroll-to-top .icon-right-angle {
+    font-size: 3rem;
+  }
+  
   .section > div, .section > div > div {
     max-width: var(--content-width);
     margin: auto;
