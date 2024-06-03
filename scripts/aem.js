@@ -277,19 +277,23 @@ async function loadCSS(href) {
 /**
  * Loads a non module JS file.
  * @param {string} src URL to the JS file
- * @param {Object} attrs additional optional attributes
+ * @param {Object} parameters additional optional attributes
  */
-async function loadScript(src, attrs) {
+async function loadScript(src, parameters) {
   return new Promise((resolve, reject) => {
     if (!document.querySelector(`head > script[src="${src}"]`)) {
       const script = document.createElement('script');
       if (src) {
         script.src = src;
       }
-      if (attrs) {
+      if (parameters) {
         // eslint-disable-next-line no-restricted-syntax, guard-for-in
-        for (const attr in attrs) {
-          script.setAttribute(attr, attrs[attr]);
+        for (const attr in parameters) {
+          if (attr === 'content') {
+            script.textContent = parameters[attr];
+          } else {
+            script.setAttribute(attr, parameters[attr]);
+          }
         }
       }
       script.onload = resolve;

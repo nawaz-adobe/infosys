@@ -321,7 +321,6 @@ main .scroll-to-top {
     height: 6.2rem;
     background: white;
     border-radius: 50%;
-    display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 -8px 16px rgb(0 0 0 / 16%);
@@ -343,7 +342,7 @@ main .scroll-to-top {
   }
 }
 
-@media (width > 1210px) {  
+@media (width > 1210px) {
   main .scroll-to-top {
     width: 7rem;
     height: 7rem;
@@ -352,7 +351,7 @@ main .scroll-to-top {
   main .scroll-to-top .icon-right-angle {
     font-size: 3rem;
   }
-  
+
   .section > div, .section > div > div {
     max-width: var(--content-width);
     margin: auto;
