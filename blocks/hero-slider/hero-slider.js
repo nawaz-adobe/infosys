@@ -5,6 +5,19 @@ function getCurrentIndex(block) {
   return [...block.querySelectorAll('.card-item')].indexOf(currentIndex);
 }
 
+function getCardItemWidthByIndex(block, index) {
+  const cardItems = block.querySelectorAll('.card-item') || [];
+  const cardItemRect = index < cardItems.length
+    ? cardItems[index].getBoundingClientRect() : { width: 0 };
+  let { width } = cardItemRect;
+  if (width === 0) {
+    const cardsList = block.querySelector('.cards-list');
+    const cardsListRect = cardsList.getBoundingClientRect();
+    width = cardItems.length > 0 ? cardsListRect.width / cardItems.length : cardsListRect.width;
+  }
+  return width;
+}
+
 function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
   const cardItems = Array.from(cardsList.querySelectorAll('.card-item'));
   const visibleItemsCount = parseInt(cardsList.getAttribute('data-visible-items'), 10);
@@ -104,7 +117,7 @@ const setCardsListVisibleItems = (block) => {
 
 function startProgressBar(block, currentIndex) {
   const progressBars = block.querySelectorAll('.progress-bar');
-  const cardItemWidth = parseFloat(progressBars[currentIndex].style.maxWidth || 0);
+  const cardItemWidth = getCardItemWidthByIndex(block, currentIndex);
   const progressBarJump = cardItemWidth / 100;
   const currentProgressBar = progressBars[currentIndex];
   let newIndex = currentIndex;
@@ -234,13 +247,6 @@ function decorateHeroSlidingCards(block) {
 
 const setProgressBarPosition = (block) => {
   const cardsList = block.querySelector('.cards-list');
-  const cardItem = block.querySelector('.card-item');
-  const cardItemRect = cardItem.getBoundingClientRect();
-  const progressBars = block.querySelectorAll('.progress-bar');
-
-  progressBars.forEach((progressBar) => {
-    progressBar.style.maxWidth = `${cardItemRect.width}px`;
-  });
 
   if (cardsList.getAttribute('progress-bar') !== 'initialised') {
     cardsList.setAttribute('progress-bar', 'initialised');
