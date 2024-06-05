@@ -48,6 +48,8 @@
   --grey-light: #f5f6f7;
   --orange: #f16c51;
   --grey-lighter: #707070;
+  --dark-slate-gray: #3d4551;
+  --spring-green: #00b28f;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -363,7 +365,7 @@ main .scroll-to-top {
   }
 }
 
-main .section.top-heading-gray > div:first-child > h2:first-of-type {
+main .section.top-heading-gray h2:first-of-type {
   color: var(--black-olive);
 }
 

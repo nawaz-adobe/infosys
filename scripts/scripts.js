@@ -31,6 +31,31 @@ function buildHeroBlock(main) {
 }
 
 /**
+ * The function checks if the first H2 heading of each section is immediately followed by a button.
+ * If such a pattern is found, it wraps both the H2 heading and the button in a div
+ * with the classes 'advanced-heading' and 'heading-button'.
+ *
+ * Note: This function currently only targets H2 headings.
+ * However, it can be enhanced to decorate H1 and other headings if required.
+ *
+ * @param {HTMLElement} main - The main element to decorate.
+ */
+function decorateSectionHeading(main) {
+  const sections = main.querySelectorAll('.section');
+  sections.forEach((section) => {
+    const sectionHeading = section.querySelector('h2:first-of-type');
+    const headingButton = sectionHeading ? sectionHeading.nextElementSibling : '';
+    if (headingButton && headingButton.classList.contains('button-container')) {
+      const headingParent = sectionHeading.parentElement;
+      const headingButtonWrapper = document.createElement('div');
+      headingButtonWrapper.classList.add('advanced-heading', 'heading-button');
+      headingButtonWrapper.append(sectionHeading, headingButton);
+      headingParent.append(headingButtonWrapper);
+    }
+  });
+}
+
+/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
@@ -104,6 +129,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionHeading(main);
   decorateBlocks(main);
 }
 

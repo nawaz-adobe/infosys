@@ -95,3 +95,11 @@
 .icon-right-angle::before {
     content: "";
 }
+
+.icon-long-right-arrow::before {
+  content: "";
+}
+
+.icon-long-left-arrow::before {
+  content: "";
+}

@@ -10,7 +10,7 @@ div.section.hero-slider-container {
   --banner-title-font-color: white;
   --banner-title-font-family: var(--heading-font-family);
   --banner-title-font-size: var(--heading-font-size-xxl);
-  --banner-content-top: 38%;
+  --banner-content-top: 48%;
   --card-bg-color: white;
   --card-item-font-size: 1.6rem;
   --card-item-find-more-font-size: 1.8rem;
@@ -25,6 +25,12 @@ div.section.hero-slider-container {
   --arrow-control-top: 116%;
 }
 
+@media (width > 767px) {
+  .hero-slider {
+   --banner-content-top: 38%;
+  }
+}
+
 @media (width > 990px) {
   div.section.hero-slider-container {
     margin-bottom: 10rem;
@@ -33,7 +39,7 @@ div.section.hero-slider-container {
   .hero-slider {
     --card-item-font-size: 1.8rem;
     --card-item-find-more-font-size: 2rem;
-    --banner-content-top: 28%;
+    --banner-content-top: 26%;
   }
 }
 
@@ -58,6 +64,9 @@ div.section.hero-slider-container {
 
 .hero-slider .banner-content {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   top: var(--banner-content-top);
 }
 
@@ -71,7 +80,6 @@ div.section.hero-slider-container {
   font-size: var(--banner-title-font-size);
   font-weight: 300;
   line-height: 7.5rem;
-  margin-top: 2rem;
 }
 
 .hero-slider .banner-content a.report-button {
@@ -84,6 +92,7 @@ div.section.hero-slider-container {
   padding: 7px 18px 5px;
   letter-spacing: 0.16rem;
   text-align: center;
+  width: fit-content;
 }
 
 .hero-slider .cards-list {
@@ -95,6 +104,7 @@ div.section.hero-slider-container {
   width: 100%;
   bottom: -11%;
   height: 164px;
+  margin-top: 2rem;
 }
 
 .hero-slider .card-item {
