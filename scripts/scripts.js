@@ -48,7 +48,7 @@ function decorateSectionHeading(main) {
     if (headingButton && headingButton.classList.contains('button-container')) {
       const headingParent = sectionHeading.parentElement;
       const headingButtonWrapper = document.createElement('div');
-      headingButtonWrapper.classList.add('advanced-heading', 'heading-button');
+      headingButtonWrapper.classList.add('advanced-heading', 'heading-button', 'no-block-separator');
       headingButtonWrapper.append(sectionHeading, headingButton);
       headingParent.append(headingButtonWrapper);
     }

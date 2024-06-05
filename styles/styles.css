@@ -98,7 +98,8 @@
   --nav-height: 84px;
 
   /* content width */
-  --content-width: 1170px;
+  --content-width: 1210px;
+  --padding-inline: 20px;
 }
 
 @font-face {
@@ -108,21 +109,21 @@
   src: local('Arial');
 }
 
-@media (width >=376px) {
+@media (width >= 376px) {
   :root {
     --heading-font-size-xxl: calc(5.6 * var(--base-font-size));
     --heading-font-size-xl: calc(4.6 * var(--base-font-size));
   }
 }
 
-@media (width >=768px) {
+@media (width >= 768px) {
   :root {
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
     --heading-font-size-xl: calc(7 * var(--base-font-size));
   }
 }
 
-@media (width >=992px) {
+@media (width >= 992px) {
   :root {
     --base-font-size: 9px;
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
@@ -134,7 +135,7 @@
   }
 }
 
-@media (width >=1601px) {
+@media (width >= 1601px) {
   :root {
     --base-font-size: 10px;
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
@@ -341,15 +342,21 @@ main .section.gray-background {
   background: var(--footer-links-bg-color);
 }
 
-main .section.no-margin,
-main .section.no-margin h1:first-of-type,
-main .section.no-margin h2:first-of-type {
+main .section h1:first-of-type,
+main .section h2:first-of-type {
   margin: 0;
 }
 
-/* sections */
-main .section:not(.no-top-padding) {
+main .section.separator-top {
   padding-top: 64px;
+}
+
+main .section.separator-bottom {
+  padding-bottom: 128px;
+}
+
+main .section .block:not(.no-block-separator) {
+  padding-top: 48px;
 }
 
 main .section > div > div.full-width,
@@ -365,7 +372,7 @@ main .scroll-to-top {
   display: none;
 }
 
-@media (width >=992px) {
+@media (width >= 992px) {
   main .scroll-to-top {
     position: fixed;
     right: 5%;
@@ -414,9 +421,13 @@ main .scroll-to-top {
     margin: auto;
   }
 
-  .section > div:has(div.full-width-background) {
+  main .section > div:has(div.full-width-background) {
     max-width: 100%;
     margin: auto;
+  }
+
+  main .section:not(.no-inline-padding) > div > div.full-width-background {
+    padding-inline: var(--padding-inline);
   }
 }
 
@@ -424,7 +435,6 @@ main .section.top-heading-gray h2:first-of-type {
   color: var(--black-olive);
 }
 
-/* section metadata */
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);

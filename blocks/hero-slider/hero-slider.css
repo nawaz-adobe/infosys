@@ -101,7 +101,7 @@ div.section.hero-slider-container {
   flex-direction: row;
   cursor: pointer;
   box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
-  width: 100%;
+  max-width: 100%;
   bottom: -11%;
   height: 164px;
   margin-top: 2rem;
@@ -224,6 +224,13 @@ div.section.hero-slider-container {
   .hero-slider .card-item.animate-l2r,
   .hero-slider .card-item.animate-r2l {
     animation: none;
+  }
+}
+
+@media (width > 1210px) {
+  .hero-slider .cards-list {
+    left: var(--padding-inline);
+    right: var(--padding-inline);
   }
 }
 

@@ -11,9 +11,6 @@
  */
 
 /* eslint-env browser */
-const BREAKPOINTS = {
-  large: window.matchMedia('(min-width: 1210px)'),
-};
 
 /**
  * log RUM if part of the sample.
@@ -527,8 +524,8 @@ function decorateSections(main) {
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
       Object.keys(meta).forEach((key) => {
-        if (key === 'style' || (key === 'style-large' && BREAKPOINTS.large.matches)) {
-          const styles = meta[key]
+        if (key === 'style') {
+          const styles = meta.style
             .split(',')
             .filter((style) => style)
             .map((style) => toClassName(style.trim()));

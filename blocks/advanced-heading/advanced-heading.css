@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.advanced-heading.heading-button p {
+ all: unset;
+}
+
 .advanced-heading.heading-button a {
   position: relative;
   border-radius: 0;
