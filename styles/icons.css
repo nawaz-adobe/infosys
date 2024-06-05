@@ -12,88 +12,96 @@
 
 [class*=" icon-"],
 [class^="icon-"] {
-    font-family: icomoon, var(--body-font-family);
-    font-size: var(--heading-font-size-l);
-    font-weight: 400;
-    width: auto;
-    height: auto;
+  font-family: icomoon, var(--body-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  width: auto;
+  height: auto;
 }
 
 .icon-search::before {
-    content: "";
+  content: "";
 }
 
 .icon-connect::before {
-    content: "";
+  content: "";
 }
 
 .icon-request-expert::before {
-    content: "";
+  content: "";
 }
 
 .icon-insights::before {
-    content: "";
+  content: "";
 }
 
 .icon-podcasts::before {
-    content: "";
+  content: "";
 }
 
 .icon-apple::before {
-    content: "";
+  content: "";
 }
 
 .icon-google::before {
-    content: "";
+  content: "";
 }
 
 .icon-spotify::before {
-    content: "";
-    color: var(--light-green-color);
+  content: "";
+  color: var(--light-green-color);
 }
 
 .icon-sound-cloud::before {
-    content: "";
+  content: "";
 }
 
 .icon-down-arrow::before {
-    content: "";
+  content: "";
 }
 
 .icon-facebook::before {
-    content: "";
+  content: "";
 }
 
 .icon-twitter::before {
-    content: "";
+  content: "";
 }
 
 .icon-linked-in::before {
-    content: "";
+  content: "";
 }
 
 .icon-chain::before {
-    content: "";
+  content: "";
 }
 
 .icon-bx-menu-alt-right::before {
-    content: "";
+  content: "";
 }
 
 .icon-bx-x::before {
-    content: "";
+  content: "";
 }
 
 .icon-popup-cross::before {
-    content: "";
+  content: "";
+}
+
+.icon-prev::before {
+  content: "\e927";
+}
+
+.icon-next::before {
+  content: "\e927";
 }
 
 .icon-slick-arrow::before {
-    content: "";
+  content: "";
 }
 
 .icon-right-angle::before {
-    content: "";
+  content: "";
 }
 
 .icon-long-right-arrow::before {
