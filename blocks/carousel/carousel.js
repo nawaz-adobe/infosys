@@ -86,7 +86,7 @@ export default async function decorate(block) {
     updateDots();
   };
 
-  for (let i = 0; i < blockChildren.length - 2; i += 1) {
+  for (let i = 0; i < blockChildren.length - getVisibleItems() + 1; i += 1) {
     const dot = createCustomElement('span', 'carousel-dot');
     dot.addEventListener('click', dotListener(i));
     dotsContainer.appendChild(dot);
