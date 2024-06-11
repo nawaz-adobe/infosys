@@ -1,4 +1,4 @@
-import { createAemElement } from '../../scripts/blocks-utils.js';
+import { createAemElement, getOptimalImageFromPictureTag } from '../../scripts/blocks-utils.js';
 
 const ACCORDION_TITLE_PSEUDO_BG_IMAGE = '--accordion-pseudo-title-bg-image';
 const ACCORDION_ITEM_SWITCH_INTERVAL = 5000; // milliseconds
@@ -41,9 +41,9 @@ function animateContent(block) {
 }
 
 function setTitleBgImg(titleDiv, itemContent) {
-  const img = itemContent.querySelector('.item-content-image img');
-  if (img) {
-    const imgSrc = img.currentSrc || img.src;
+  const picture = itemContent.querySelector('.item-content-image picture');
+  if (picture) {
+    const imgSrc = getOptimalImageFromPictureTag(picture);
     titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${imgSrc})`);
   }
 }

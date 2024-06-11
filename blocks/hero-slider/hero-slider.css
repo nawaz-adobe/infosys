@@ -1,11 +1,42 @@
 div.section.hero-slider-container {
   height: 53.8rem;
   margin-bottom: 15rem;
+
+  --hero-slider-block-height: 50rem;
+}
+
+.hero-slider-wrapper {
+  position: relative;
+}
+
+.hero-slider-wrapper .hero-slider-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+
+.hero-slider-wrapper .banner-img {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.hero-slider-wrapper .banner-img img {
+  width: 100%;
+  height: var(--hero-slider-block-height);
+  object-fit: cover;
+}
+
+.hero-slider-wrapper .banner-img.active {
+  display: block;
 }
 
 .hero-slider {
   position: relative;
-  height: 50rem;
+  height: var(--hero-slider-block-height);
 
   --banner-title-font-color: white;
   --banner-title-font-family: var(--heading-font-family);
