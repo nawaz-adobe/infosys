@@ -1,9 +1,14 @@
-import { createAemElement } from '../../scripts/blocks-utils.js';
+import { createAemElement, getPlaceHolders } from '../../scripts/blocks-utils.js';
 
 const FILTER_CATEGORIES = {
   0: 'industry',
   1: 'technology',
   2: 'assetType',
+};
+
+const PLACEHOLDERS = {
+  viewAll: 'View all',
+  viewLess: 'View less',
 };
 
 // opens or closes the secondary view for mobile based on the 'openView' boolean value
@@ -81,8 +86,8 @@ function decorateRowList(row) {
 
 function decorateViewMore(row) {
   const viewMore = row.querySelector('p');
-  const COLLAPSED_TEXT = 'View All';
-  const EXPANDED_TEXT = 'View Less';
+  const COLLAPSED_TEXT = PLACEHOLDERS.viewAll;
+  const EXPANDED_TEXT = PLACEHOLDERS.viewLess;
   if (viewMore && viewMore.textContent.trim() === COLLAPSED_TEXT) {
     const viewMoreLink = createAemElement('a', { class: 'view-all' }, { textContent: COLLAPSED_TEXT });
     viewMore.after(viewMoreLink);
@@ -178,7 +183,8 @@ function handleWindowEvents(block) {
   }, true);
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
+  await getPlaceHolders(PLACEHOLDERS);
   const rows = [...block.children];
   rows.forEach((row, index) => {
     row.id = `row-${index}`;

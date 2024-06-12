@@ -1,4 +1,8 @@
-import { createAemElement } from '../../scripts/blocks-utils.js';
+import { createAemElement, getPlaceHolders } from '../../scripts/blocks-utils.js';
+
+const PLACEHOLDERS = {
+  report: 'Report',
+};
 
 function getCurrentIndex(block) {
   const currentIndex = block.querySelector('.card-item.active');
@@ -249,7 +253,7 @@ function decorateHeroSlidingCards(block) {
     const bannerContentChildren = [...bannerContent.children];
     const progressBar = createAemElement('div', { class: `progress-bar progress-bar-${index}`, state: 'none' });
     const card = createAemElement('div', { class: `card-item card-${index}` }, null, cardHeading, ...bannerContentChildren.slice(1), progressBar);
-    const reportButton = createAemElement('a', { class: 'report-button' }, { innerHTML: 'Report', href: card.querySelector('a').href });
+    const reportButton = createAemElement('a', { class: 'report-button' }, { innerHTML: PLACEHOLDERS.report, href: card.querySelector('a').href });
     bannerContent.prepend(reportButton);
     cardsList.appendChild(card);
     card.addEventListener('click', () => {
@@ -290,7 +294,8 @@ function onLoadSetItemsPosition(block) {
   });
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
+  await getPlaceHolders(PLACEHOLDERS);
   decorateHeroBanners(block);
   decorateHeroSlidingCards(block);
   decorateCardListWithControls(block);

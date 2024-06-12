@@ -1,3 +1,5 @@
+import { fetchPlaceholders } from './aem.js';
+
 function createAemElement(tagName, attributes, properties, ...children) {
   const el = document.createElement(tagName);
   if (attributes) {
@@ -80,9 +82,23 @@ function getOptimalImageFromPictureTag(picture) {
   return selectedSrc;
 }
 
+async function getPlaceHolders(inpPlaceHolders) {
+  const placeholders = await fetchPlaceholders();
+  // Create an object with only the keys present in inpPlaceHolders
+  const filteredPlaceholders = Object.keys(placeholders)
+    .filter((key) => key in inpPlaceHolders)
+    .reduce((obj, key) => {
+      obj[key] = placeholders[key];
+      return obj;
+    }, {});
+
+  Object.assign(inpPlaceHolders, filteredPlaceholders);
+}
+
 export {
   createAemElement,
   createCustomElement,
   fetchData,
   getOptimalImageFromPictureTag,
+  getPlaceHolders,
 };
