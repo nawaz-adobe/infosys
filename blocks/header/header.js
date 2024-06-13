@@ -155,6 +155,12 @@ export default async function decorate(block) {
   moveShareOptionsToTools(fragment, navTools);
   nav.appendChild(navTools);
 
+  // making search icon accessible
+  const searchLink = nav.querySelector('a:has(.icon-search)');
+  if (searchLink) {
+    searchLink.setAttribute('aria-label', 'Search');
+  }
+
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');

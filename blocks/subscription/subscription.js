@@ -31,6 +31,9 @@ const decorateColumnDiv = (titleLinkElement) => {
   if (link) {
     anchor.setAttribute('title', link.textContent);
     anchor.href = link.href;
+  } else {
+    anchor.href = '#';
+    anchor.addEventListener('click', (e) => e.preventDefault());
   }
   const boxDiv = createCustomElement('div', 'box');
   const span1 = titleLinkElement.querySelector('span');

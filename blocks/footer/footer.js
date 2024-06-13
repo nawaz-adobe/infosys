@@ -79,8 +79,10 @@ async function toggleDropdown(countriesdatapath) {
 function createDropdown(div, dropdowntitle, countriesdatapath) {
   const dropdownContainer = createCustomElement('div', 'dropdown');
   const dropdownToggle = createCustomElement('a', 'dropdown-toggle');
+  dropdownToggle.href = '#';
   dropdownToggle.textContent = dropdowntitle;
-  dropdownToggle.onclick = function handleDropdownToggle() {
+  dropdownToggle.onclick = function handleDropdownToggle(e) {
+    e.preventDefault();
     toggleDropdown(countriesdatapath);
   };
 
