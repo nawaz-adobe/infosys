@@ -45,6 +45,7 @@ main .section.full-width .subscription-wrapper {
   flex: 0 0 100%;
   max-width: 100%;
   text-align: center;
+  background-color: var(--subscription-bg-brown-color);
 }
 
 .block.subscription .box span {
@@ -64,6 +65,24 @@ main .section.full-width .subscription-wrapper {
   text-align: left;
   background-color: var(--subscription-bg-topaz-color);
   margin: 0;
+}
+
+@keyframes open-3d {
+  0% {
+    transform: perspective(50px) rotateX(5deg);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.block.subscription .popup.show {
+  display: block;
+  animation: open-3d 1s ease;
 }
 
 .block.subscription .popup ul li {
