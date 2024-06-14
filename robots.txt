@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /_drafts/
+Disallow: /_tools/
+Disallow: /sidekick/
+Disallow: /modals/
+Disallow: /**/modals/
+Disallow: /nav
+Disallow: /**/nav
+Disallow: /footer
+Disallow: /**/footer
+
+Sitemap: https://www.infosys.com/sitemap.xml
