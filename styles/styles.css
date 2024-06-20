@@ -365,7 +365,7 @@ main .section > div:has(div.full-width) {
 }
 
 main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
-  padding-inline: 20px;
+  padding-inline: var(--padding-inline);
 }
 
 main .scroll-to-top {

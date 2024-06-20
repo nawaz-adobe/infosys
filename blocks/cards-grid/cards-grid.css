@@ -3,10 +3,17 @@
   display: grid;
   grid-template-rows: auto auto;
   align-items: start;
+  padding-inline: var(--padding-inline);
 
   --card-background-color: var(--navy-blue);
   --find-more-mobile-background-color: var(--light-sky-blue);
   --icon-long-right-arrow-font-color: var(--bright-blue);
+}
+
+@media (width > 767px) {
+  .cards-grid {
+    padding-inline: 0;
+  }
 }
 
 .cards-grid > .row {
@@ -77,12 +84,12 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 27.4rem;
+  height: calc(100vw / 1.6);
 }
 
 @media (width > 767px) {
   #card-1 {
-    height: 493px;
+    height: 36rem;
   }
 
   #card-4 {
@@ -90,11 +97,11 @@
   }
 
   .cards-grid .column > .card {
-    height: 246px;
+    height: 24.6rem;
   }
 
   .cards-grid > .row:last-of-type .card {
-    height: 197px;
+    height: 19.7rem;
   }
 }
 
@@ -204,6 +211,10 @@
   overflow: hidden;
 }
 
+.cards-grid h3.card-title .card-title-link {
+  display: inline-flex;
+}
+
 .cards-grid .card-data h3 {
   font-size: 2rem;
   font-weight: 700;
@@ -228,6 +239,11 @@
   align-items: center;
   padding: 0 2.7rem;
   text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.cards-grid #card-6 + .find-more-mobile {
+  margin-bottom: 0;
 }
 
 @media (width > 767px) {

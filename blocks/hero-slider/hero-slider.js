@@ -26,22 +26,25 @@ function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
   const cardItems = Array.from(cardsList.querySelectorAll('.card-item'));
   const visibleItemsCount = parseInt(cardsList.getAttribute('data-visible-items'), 10);
   const newCardItem = cardItems[newIndex];
-  if (prevIndex !== newIndex && newCardItem.style.display === 'block') return;
+  if (prevIndex !== newIndex && newCardItem.classList.contains('visible')) return;
 
   cardItems.forEach((cardItem) => {
-    cardItem.style.display = 'none';
+    cardItem.classList.remove('visible');
   });
 
   let startIndex = newIndex;
   const animateClass = prevIndex < newIndex ? 'animate-r2l' : 'animate-l2r';
   if (visibleItemsCount === 2 && newIndex % 2 === 1) startIndex = newIndex - 1;
-  cardItems[startIndex].style.display = 'block';
+  cardItems[startIndex].classList.add('visible');
   if (prevIndex !== newIndex) cardItems[startIndex].classList.add(animateClass);
   // eslint-disable-next-line max-len
   for (let i = startIndex + 1; i < Math.min(startIndex + visibleItemsCount, cardItems.length); i += 1) {
-    cardItems[i].style.display = 'block';
+    cardItems[i].classList.add('visible');
     if (prevIndex !== newIndex) cardItems[i].classList.add(animateClass);
   }
+
+  cardItems.findLast((cardItem) => cardItem.classList.contains('visible'))
+    .classList.add('last-visible');
 }
 
 function setBannerImage(banner, block) {
@@ -79,6 +82,11 @@ function stopAllActiveItems(block) {
     currentCardItem.classList.remove('active');
     currentCardItem.classList.remove('animate-l2r');
     currentCardItem.classList.remove('animate-r2l');
+  }
+
+  const currentLastVisibleCardItem = block.querySelector('.card-item.last-visible');
+  if (currentLastVisibleCardItem) {
+    currentLastVisibleCardItem.classList.remove('last-visible');
   }
 
   const tile = block.querySelector('li.tile.active');

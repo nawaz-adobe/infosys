@@ -1,8 +1,20 @@
 div.section.hero-slider-container {
-  height: 53.8rem;
-  margin-bottom: 15rem;
+  --hero-slider-block-height: 43.4rem;
 
-  --hero-slider-block-height: 50rem;
+  height: var(--hero-slider-block-height);
+  margin-bottom: 15rem;
+}
+
+@media (width > 767px) {
+  div.section.hero-slider-container {
+    --hero-slider-block-height: 48.5rem;
+  }
+}
+
+@media (width > 990px) {
+  div.section.hero-slider-container {
+    --hero-slider-block-height: 53.8rem;
+  }
 }
 
 .hero-slider-wrapper {
@@ -41,7 +53,7 @@ div.section.hero-slider-container {
   --banner-title-font-color: white;
   --banner-title-font-family: var(--heading-font-family);
   --banner-title-font-size: var(--heading-font-size-xxl);
-  --banner-content-top: 48%;
+  --banner-content-top: 44%;
   --card-bg-color: white;
   --card-item-font-size: 1.6rem;
   --card-item-find-more-font-size: 1.8rem;
@@ -70,7 +82,7 @@ div.section.hero-slider-container {
   .hero-slider {
     --card-item-font-size: 1.8rem;
     --card-item-find-more-font-size: 2rem;
-    --banner-content-top: 26%;
+    --banner-content-top: 35%;
   }
 }
 
@@ -132,14 +144,14 @@ div.section.hero-slider-container {
   flex-direction: row;
   cursor: pointer;
   box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
-  max-width: 100%;
+  width: 100%;
   bottom: -11%;
   height: 164px;
   margin-top: 2rem;
 }
 
 .hero-slider .card-item {
-  display: flex;
+  display: none;
   position: relative;
   flex: 1;
   flex-direction: column;
@@ -153,13 +165,20 @@ div.section.hero-slider-container {
   height: 164px;
 }
 
-.hero-slider .card-item::after {
+.hero-slider .card-item.visible {
+  display: flex;
+}
+
+.hero-slider .card-item.visible::after {
   position: absolute;
   content: "";
   border-right: var(--card-item-border-right);
   top: 10%;
   right: 0;
   bottom: 10%;
+}
+
+.hero-slider .card-item.last-visible::after {
   display: none;
 }
 
@@ -235,10 +254,6 @@ div.section.hero-slider-container {
   .hero-slider .card-item {
     height: unset;
   }
-
-  .hero-slider .card-item::after {
-    display: block;
-  }
 }
 
 @media (width > 990px) {
@@ -246,10 +261,6 @@ div.section.hero-slider-container {
     background-color: white;
     margin-bottom: 10px;
     bottom: -15%;
-  }
-
-  .hero-slider .card-item::after {
-    display: block;
   }
 
   .hero-slider .card-item.animate-l2r,
@@ -316,7 +327,7 @@ div.section.hero-slider-container {
   flex-direction: row;
   gap: 1rem;
   top: var(--arrow-control-top);
-  right: 10%;
+  right: 0;
 }
 
 .hero-slider button.arrow {
@@ -350,9 +361,9 @@ div.section.hero-slider-container {
   flex-direction: row;
   position: absolute;
   top: var(--tiles-bar-top);
-  width: 60%;
+  width: 50%;
   gap: 0.8rem;
-  margin-left: -1rem;
+  padding-left: 0;
   margin-top: 1rem;
   margin-bottom: 1rem;
   cursor: pointer;
