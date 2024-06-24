@@ -15,6 +15,8 @@ function traverseAndPrint(element, level, columnDiv) {
     } else if (level === 3) {
       if (element.children.length > 1) {
         const link = element.children[0];
+        link.innerHTML = '';
+        link.setAttribute('target', '_blank');
         link.classList.add('icons-link');
         const icon = element.children[1].querySelector('img');
         link.appendChild(icon);
