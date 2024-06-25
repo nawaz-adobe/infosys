@@ -115,6 +115,7 @@ main .section.full-width .subscription-wrapper {
 
 .block.subscription .box span.header-icons {
   font-size: 3rem;
+  line-height: 1;
   transform: translateY(0);
   transition: all 0.5s ease;
 }
@@ -194,12 +195,14 @@ main .section.full-width .subscription-wrapper {
   }
 }
 
-@media(width >=768px) {
+@media(width >=576px) {
   .block.subscription .columns {
     flex: 0 0 25%;
     max-width: 25%;
   }
+}
 
+@media(width >=768px) {
   .block.subscription .popup ul li {
     padding: 1.3rem 0;
   }
