@@ -1,9 +1,32 @@
 import { createCustomElement } from '../../scripts/blocks-utils.js';
-import { createForm, handleSubmit } from '../form/form.js';
+import { createForm } from '../form/form.js';
 
 const handleSubmitExternal = async (form) => {
+  const email = form.querySelector('.input-txt input').value;
+  const source = 'IKI Footer Subscribe';
+  let params = `camFormName=connect-iki&camId=null&camCustId=null&email=${email}`
+    + `&Source=${source}&referral_source=${window.location.search.substring(1)}`;
+
+  const dmdBaseCDC = window.Dmdbase_CDC;
+  if (dmdBaseCDC) {
+    params += `&opt-in-comm=Yes&country=${dmdBaseCDC.CompanyProfile.country_name}`
+      + `&demandbase_sid=${dmdBaseCDC.CompanyProfile.demandbase_sid}`
+      + `&industry=${dmdBaseCDC.CompanyProfile.industry}`
+      + `&sub_industry=${dmdBaseCDC.CompanyProfile.sub_industry}`
+      + `&company_name=${dmdBaseCDC.CompanyProfile.company_name}`
+      + `&revenue_range=${dmdBaseCDC.CompanyProfile.revenue_range}`
+      + `&city=${dmdBaseCDC.CompanyProfile.city}`
+      + `&state=${dmdBaseCDC.CompanyProfile.state}`
+      + `&zip=${dmdBaseCDC.CompanyProfile.registry_zip_code} `
+      + `&fortune_1000=${dmdBaseCDC.CompanyProfile.fortune_1000} `
+      + `&forbes_2000=${dmdBaseCDC.CompanyProfile.forbes_2000} `
+      + '&watch_list_account_type='
+      + '&watch_list_account_status='
+      + '&db_country_name_ip='
+      + '&office_phone=';
+  }
+
   const url = 'https://marcom.infosys.com/services/forms/v1/response';
-  const params = {};
   fetch(url, {
     method: 'POST',
     credentials: 'include',
@@ -87,7 +110,6 @@ const decoratePopupDiv = async (popupDiv) => {
         e.preventDefault();
         const valid = form.checkValidity() && checkEmailDomain(form);
         if (valid) {
-          handleSubmit(form);
           handleSubmitExternal(form);
         } else {
           const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');

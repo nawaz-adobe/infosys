@@ -27,4 +27,9 @@ async function loadOneTrustScripts() {
   await Promise.all(scripts.map((script) => loadScript(script.src, script)));
 }
 
+const loadDemandBase = async () => {
+  await loadScript('https://scripts.demandbase.com/HviY9wSc.min.js', { id: 'demandbase_js_lib', type: 'text/javascript' });
+};
+
 loadOneTrustScripts();
+loadDemandBase();
