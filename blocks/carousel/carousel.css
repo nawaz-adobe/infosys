@@ -45,6 +45,7 @@
 
 .carousel .carousel-item .card-image img {
   transition: .5s ease-in-out;
+  display: block;
 }
 
 .carousel .carousel-item .card-image:hover img {
