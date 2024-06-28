@@ -8,12 +8,12 @@
 
 header nav[aria-expanded="true"] .block.social-wrapper {
     top: 0;
-    transform: translate(-100px, 0);
+    transform: translate(-50px, -5px);
 }
 
 .block.social-wrapper .social span.icon {
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     border: 2px solid black;
     display: flex;
@@ -33,7 +33,7 @@ header nav .nav-tools ul li:has(.social) {
     position: relative;
 }
 
-header nav .nav-tools ul li:hover div {
+header nav .nav-tools ul li.social.show div {
     display: flex;
 }
 

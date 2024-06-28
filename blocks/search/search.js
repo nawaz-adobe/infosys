@@ -146,6 +146,7 @@ async function triggerSearch() {
   ]);
 
   if (searchData) {
+    showSearchPopup();
     updateSearchResults(searchPopup, searchData);
   }
 
@@ -169,7 +170,6 @@ function createSearchInputDiv(searchText) {
   inputElement.classList.add('form-control', 'search');
   inputElement.name = 'k';
   inputElement.placeholder = searchText;
-  inputElement.onfocus = showSearchPopup;
   inputElement.oninput = toggleCrossIcon;
   inputElement.onkeyup = triggerSearch;
 

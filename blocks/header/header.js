@@ -91,13 +91,20 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} fragment - The fragment of the document where the navigation bar is located.
  * @param {Element} navTools - The tools section in the navigation bar.
  */
-function moveShareOptionsToTools(fragment, navTools) {
+function decorateShareOption(fragment, navTools) {
   const socialLink = navTools.querySelector('span.icon-share');
   if (socialLink) {
     const listItemElement = socialLink.closest('li');
+    listItemElement.classList.add('social');
     const socialWrapper = fragment.querySelector('.social-wrapper');
     listItemElement.appendChild(socialWrapper);
   }
+
+  // add click listener to social share button
+  socialLink.addEventListener('click', () => {
+    const socialMenu = navTools.querySelector('ul li.social');
+    socialMenu.classList.toggle('show');
+  });
 }
 
 /**
@@ -152,7 +159,7 @@ export default async function decorate(block) {
   navContainer.appendChild(navSections);
 
   const navTools = fragment.querySelector('.nav-tools');
-  moveShareOptionsToTools(fragment, navTools);
+  decorateShareOption(fragment, navTools);
   nav.appendChild(navTools);
 
   // making search icon accessible
