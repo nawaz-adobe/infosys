@@ -1,5 +1,6 @@
 import { createAemElement, getPlaceHolders } from '../../scripts/blocks-utils.js';
 
+const PROGRESS_BAR_TIMEOUT = 35;
 const PLACEHOLDERS = {
   report: 'Report',
 };
@@ -22,7 +23,7 @@ function getCardItemWidthByIndex(block, index) {
   return width;
 }
 
-function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
+function updateVisibleCardItems(cardsList, prevIndex, newIndex, animateClass = 'animate-r2l') {
   const cardItems = Array.from(cardsList.querySelectorAll('.card-item'));
   const visibleItemsCount = parseInt(cardsList.getAttribute('data-visible-items'), 10);
   const newCardItem = cardItems[newIndex];
@@ -32,13 +33,11 @@ function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
     cardItem.classList.remove('visible');
   });
 
-  let startIndex = newIndex;
-  const animateClass = prevIndex < newIndex ? 'animate-r2l' : 'animate-l2r';
+  let startIndex = visibleItemsCount === cardItems.length ? 0 : newIndex;
   if (visibleItemsCount === 2 && newIndex % 2 === 1) startIndex = newIndex - 1;
-  cardItems[startIndex].classList.add('visible');
-  if (prevIndex !== newIndex) cardItems[startIndex].classList.add(animateClass);
+
   // eslint-disable-next-line max-len
-  for (let i = startIndex + 1; i < Math.min(startIndex + visibleItemsCount, cardItems.length); i += 1) {
+  for (let i = startIndex; i < Math.min(startIndex + visibleItemsCount, cardItems.length); i += 1) {
     cardItems[i].classList.add('visible');
     if (prevIndex !== newIndex) cardItems[i].classList.add(animateClass);
   }
@@ -79,9 +78,14 @@ function stopAllActiveItems(block) {
 
   const currentCardItem = block.querySelector('.card-item.active');
   if (currentCardItem) {
-    currentCardItem.classList.remove('active');
-    currentCardItem.classList.remove('animate-l2r');
-    currentCardItem.classList.remove('animate-r2l');
+    currentCardItem.classList.remove('active', 'animate-l2r', 'animate-r2l');
+  }
+
+  const visibleCardItems = block.querySelectorAll('.card-item.visible');
+  if (visibleCardItems) {
+    visibleCardItems.forEach((cardItem) => {
+      cardItem.classList.remove('visible', 'animate-l2r', 'animate-r2l');
+    });
   }
 
   const currentLastVisibleCardItem = block.querySelector('.card-item.last-visible');
@@ -95,7 +99,7 @@ function stopAllActiveItems(block) {
   clearTimeout(block.timeoutId);
 }
 
-function setActiveItemsByIndex(block, prevIndex, newIndex) {
+function setActiveItemsByIndex(block, prevIndex, newIndex, animateClass = 'animate-r2l') {
   const cardsList = block.querySelector('.cards-list');
   const newBanner = block.querySelector(`#banner-${newIndex}`);
   const newCardItem = block.querySelector(`.card-${newIndex}`);
@@ -108,7 +112,7 @@ function setActiveItemsByIndex(block, prevIndex, newIndex) {
   newCardItem.classList.add('active');
   newTile.classList.add('active');
   setBannerImage(newBanner, block);
-  updateVisibleCardItems(cardsList, prevIndex, newIndex);
+  updateVisibleCardItems(cardsList, prevIndex, newIndex, animateClass);
 }
 
 const setCardsListVisibleItems = (block) => {
@@ -129,7 +133,7 @@ const setCardsListVisibleItems = (block) => {
   if (mobileView.matches) {
     cardsList.setAttribute('data-visible-items', 1);
   }
-  setActiveItemsByIndex(block, 0, 0);
+  setActiveItemsByIndex(block, -1, 0);
 };
 
 function startProgressBar(block, currentIndex) {
@@ -154,7 +158,7 @@ function startProgressBar(block, currentIndex) {
     // Infinite loop to start the progress bar
     // 'newIndex' is updated once the current progress bar reaches 100% width
     startProgressBar(block, newIndex);
-  }, 35);
+  }, PROGRESS_BAR_TIMEOUT);
 }
 
 function moveNextCard(block) {
@@ -171,7 +175,7 @@ function movePrevCard(block) {
   const currentCardItem = block.querySelector('.card-item.active');
   const currentIndex = [...cardItems].indexOf(currentCardItem);
   const prevIndex = (currentIndex - 1 + cardItems.length) % cardItems.length;
-  setActiveItemsByIndex(block, currentIndex, prevIndex);
+  setActiveItemsByIndex(block, currentIndex, prevIndex, 'animate-l2r');
   startProgressBar(block, prevIndex);
 }
 
@@ -245,7 +249,8 @@ function decorateTilesControls(block) {
     const tile = createAemElement('li', { class: `tile tile-${i}` });
     tile.addEventListener('click', () => {
       const currentIndex = getCurrentIndex(block);
-      setActiveItemsByIndex(block, currentIndex, i);
+      const animateClass = i > currentIndex ? 'animate-r2l' : 'animate-l2r';
+      setActiveItemsByIndex(block, currentIndex, i, animateClass);
       startProgressBar(block, i);
     });
     tilesBar.appendChild(tile);
@@ -285,7 +290,7 @@ const setProgressBarPosition = (block) => {
 
   if (cardsList.getAttribute('progress-bar') !== 'initialised') {
     cardsList.setAttribute('progress-bar', 'initialised');
-    setActiveItemsByIndex(block, 0, 0);
+    setActiveItemsByIndex(block, -1, 0);
     startProgressBar(block, 0);
   }
 };

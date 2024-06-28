@@ -1,5 +1,16 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 div.section.hero-slider-container {
   --hero-slider-block-height: 43.4rem;
+  --fade-in-animation: fade-in 1s ease-in-out;
 
   height: var(--hero-slider-block-height);
   margin-bottom: 15rem;
@@ -27,13 +38,17 @@ div.section.hero-slider-container {
   top: 0;
   width: 100%;
   max-width: 100%;
-  height: 100%;
+  height: var(--hero-slider-block-height);
+  background-color: lightgray;
 }
 
 .hero-slider-wrapper .banner-img {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  display: none;
+  visibility: hidden;
 }
 
 .hero-slider-wrapper .banner-img img {
@@ -43,7 +58,8 @@ div.section.hero-slider-container {
 }
 
 .hero-slider-wrapper .banner-img.active {
-  display: block;
+  visibility: visible;
+  animation: var(--fade-in-animation);
 }
 
 .hero-slider {
@@ -123,6 +139,7 @@ div.section.hero-slider-container {
   font-size: var(--banner-title-font-size);
   font-weight: 300;
   line-height: 7.5rem;
+  animation: var(--fade-in-animation);
 }
 
 .hero-slider .banner-content a.report-button {
@@ -148,6 +165,7 @@ div.section.hero-slider-container {
   bottom: -11%;
   height: 164px;
   margin-top: 2rem;
+  background-color: white;
 }
 
 .hero-slider .card-item {
@@ -246,7 +264,6 @@ div.section.hero-slider-container {
 
 @media (width > 767px) {
   .hero-slider .cards-list {
-    background-color: white;
     bottom: -8%;
     height: unset;
   }
