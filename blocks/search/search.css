@@ -7,9 +7,9 @@ ul {
 
 /* Modal Styles */
 main .modal dialog[data-link="/modals/search"] {
-    height: 32rem;
+    height: 36rem;
     position: absolute;
-    top: var(--nav-height);
+    top: 50%;
     bottom: auto;
     overflow: visible;
     opacity: 0;
@@ -19,7 +19,6 @@ main .modal dialog[data-link="/modals/search"] {
 
 main .modal dialog[data-link="/modals/search"][open] {
     opacity: 1;
-    transform: translate(0, 0);
 }
 
 main .modal dialog[data-link="/modals/search"] h1,
