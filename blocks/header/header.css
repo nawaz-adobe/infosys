@@ -257,6 +257,7 @@ header nav[aria-expanded="true"] .nav-sections {
   display: block;
   visibility: visible;
   align-self: start;
+  font-size: var(--header-font-size-s);
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
