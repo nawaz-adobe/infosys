@@ -20,7 +20,7 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - uses: ssilare-adobe/ai-reviewer-bot@v1.0.2
+      - uses: ssilare-adobe/ai-reviewer-bot@v1.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
