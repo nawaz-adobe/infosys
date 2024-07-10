@@ -37,6 +37,7 @@ const handleSubmitExternal = async (form) => {
     redirect: 'manual', // Set to 'auto' to follow redirection set in form processing step
   })
     .then(() => {
+      console.log("here");
       form.style.display = 'none';
       const thankyoudiv = createCustomElement('div', 'thankyousub');
       const h4 = document.createElement('h4');
